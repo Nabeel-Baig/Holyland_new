@@ -29,8 +29,6 @@ public   function index(){
         //Validating Name Field
         $this->form_validation->set_rules('city_name', 'City Name', 'required|min_length[3]|max_length[15]');
 
-        //Validating Email Field
-        $this->form_validation->set_rules('city_sht_name', 'Country Short Name', 'required|min_length[1]|max_length[15]');
 
        
        $data['countries'] = $this->country_model->getCountries();

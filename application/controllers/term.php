@@ -88,10 +88,11 @@ public   function add_term_det(){
 }
 public   function term_list(){
        // echo "This";
+       $data['terms'] = $this->term_model->getTerm_list();
         $this->load->view('header');
             $this->load->view('aside');
             //$this->load->view('nav_bar');
-            $this->load->view('pages/tables/term_list.php');
+            $this->load->view('pages/tables/term_list.php', $data);
     }
 
     public function showAllterm(){
