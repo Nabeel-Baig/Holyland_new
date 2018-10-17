@@ -87,13 +87,32 @@ public   function add_term_det(){
     }
 }
 public   function term_list(){
-       // echo "This";
-       $data['terms'] = $this->term_model->getTerm_list();
+  $data['terms'] = $this->term_model->getTerm_list();
         $this->load->view('header');
             $this->load->view('aside');
             //$this->load->view('nav_bar');
             $this->load->view('pages/tables/term_list.php', $data);
     }
+
+
+
+// this function shows the drop down menu of Country with reference to state
+public function get_term()
+{
+  $term_cond_id = $this->input->post('term_cond_id');
+  $term_cond_det_id = $this->term_model->get_term($term_cond_id);
+  if (count($term_cond_det_id)>0)
+   {
+      $pro_select_box = '';
+      $pro_select_box .= '<option value = "">Select Term & Condition Detail</option>';
+      foreach ($term_cond_det_id as $term_cond_det_id) {
+        $pro_select_box .= '<option value="'.$term_cond_det_id->term_cond_det_id.'">'.$term_cond_det_id->term_cond_det_desc.'</option>';
+      }
+      echo json_encode($pro_select_box);
+  }
+}
+
+
 
     public function showAllterm(){
     $output = $this->term_model->showAllterm();

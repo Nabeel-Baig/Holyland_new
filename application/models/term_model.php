@@ -13,6 +13,52 @@ class term_model extends CI_Model{
     }
 
 
+    // Fetching Term Name from Term in ADD Season As a drop down and inherit in Add Term details List
+    public function getTerms()
+    {
+        $sql="SELECT * from 00000_mst_terms_condition";
+        $result=$this->db->query($sql);
+        return $result->result();
+    }
+// Fetching Term Name from Term in ADD Season As a drop down and inherit in TErm Details List
+    public function get_Term_Details()
+    {
+        $sql="SELECT * from 00000_mst_terms_condition INNER JOIN 00000_mst_terms_condition_detail ON 00000_mst_terms_condition.term_cond_id=00000_mst_terms_condition_detail.term_cond_id";
+        $result=$this->db->query($sql);
+        return $result->result();
+    }
+
+
+
+
+// this function shows the drop down menu of Country with reference to state in Add City
+    public function get_term($term_cond_id)
+    {
+        $query = $this->db->get_where('00000_mst_terms_condition_detail', array('term_cond_id' => $term_cond_id));
+        return $query->result();
+    }
+
+// this function calls in Season As Show term in season model
+    public function gettermBytermId($term_cond_id)
+{
+    $sql="SELECT term_cond_desc FROM 00000_mst_terms_condition WHERE term_cond_id = " . $term_cond_id;
+    //$this->db->insert('00000_mst_city', $app_id);
+    $result=$this->db->query($sql);
+    return $result->row();
+}
+
+// This function calls in Season As Show Term Details detail in season model
+             function getdetailBydetailId($term_cond_det_id){
+                $this->db->select('term_cond_det_desc');
+                $this->db->from('00000_mst_terms_condition_detail');
+                $this->db->where('term_cond_det_id', $term_cond_det_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
+
+
+
 
 
 // Fetch in Term Details as Term List
@@ -27,15 +73,6 @@ class term_model extends CI_Model{
  //Inserting in Table(Credit) of Database(travel) 
        $this->db->insert('00000_mst_terms_condition_detail', $data);   
     }
-public function getTermByTermId($term_cond_id)
-{
-    $sql="SELECT term_cond_desc FROM 00000_mst_terms_condition WHERE term_cond_id = " . $term_cond_id;
-    //$this->db->insert('00000_mst_city', $app_id);
-    $result=$this->db->query($sql);
-    return $result->row();
-}
-
-
 
 
     public function showAllterm(){

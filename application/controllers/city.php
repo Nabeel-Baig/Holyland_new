@@ -31,7 +31,7 @@ public   function index(){
 //sadsadsad
 
        
-       $data['countries'] = $this->country_model->getCountries();
+       $data['countries'] = $this->country_model->get_Countries();
        /*$data['countries'] = $this->state_model->getState_list();*/
 
         if ($this->form_validation->run() == FALSE) {
@@ -78,7 +78,7 @@ public function get_state()
 }
 
 public     function city_list() {
-            $id = $this->uri->segment(3);
+            /*$id = $this->uri->segment(3);*/
             $data =  array();
             $data['countries'] = $this->country_model->getCountries();
              $this->load->view('header');

@@ -31,17 +31,16 @@
             <!-- form start -->
 
             <div class="row">
+          <div class="box" style="width: 80%;margin-left: 10%;background: #c1c1c1;">
         <div class="box-body">
           <h4>State/ Province</h4>
-      </div>
+      <div class="col-md-6">
             <form action="<?php echo base_url('state'); ?>" method = "post">
-        <div class="col-md-3">
           <div class="form-group">
           <?php echo form_label('ID'); ?>
                   <input type="email" class="form-control" placeholder="ID Auto Generate" disabled>
                 </div>
-        </div>
-        <div class="col-md-3">
+    
           <div class="form-group">
           <?php echo form_label('Country'); ?><?php echo form_error('country'); ?> <br />
           <select list="hosting-plan" id="country" name="country" style="width: 100%;padding: 5px;border: #cecece solid 1px;">
@@ -52,22 +51,23 @@
                 </select>
                   <!--  <input list="hosting-plan" id="country_name" name="country_name" placeholder="Country Name"  type="text" style="width: 100%;padding: 5px;border: #cecece solid 1px;"> -->
                 
-                </div>
+                
+              </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
            <div class="form-group" style="margin-top: 0%">
            <?php echo form_label('State/Province'); ?><?php echo form_error('state_name'); ?> <br />
                 <input type="text" id="state_name" name="state_name" class="form-control" placeholder="State/Province">
               </div>
-        </div>
-        <div class="col-md-3">
+      
            <div class="form-group" style="margin-top: 0%">
            <?php echo form_label('State/Province Short Name'); ?><?php echo form_error('state_sht_name'); ?> <br />
                 <input type="text" id="state_sht_name" name="state_sht_name" class="form-control" placeholder="State/Province Short Name">
               </div>
         </div>
-        <div class="col-md-3">
-          <div class="form-group">
+           <div class="row">
+        <div class="col-md-6">
+          <div class="form-group" style="position: relative;left: 34px;top: -20px;right: 0px;bottom: 0px;">
 
             <label class="" for="inactive_flag" style="    font-weight: 400; margin-top: 5%"><?php echo form_error('inactive_flag'); ?> <br />
               <input type="radio" name="inactive_flag" value="0" class="checkbox1">
@@ -78,27 +78,23 @@
               Inactive
             </label>
           </div>
-        </div>
-         
-
-        
-
-     
       </div>
-
+<div class="col-md-6"></div>
+    </div>
 
 
       <br>
      
       <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block" onclick="myFunction()"> <?php echo form_submit(array('id' => 'submit', 'value' => 'Add', 'class' => 'btn btn-primary center-block')); ?> </form></div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div> 
+         <div class="col-md-4"></div>
         <?php echo form_close(); ?><br/>
-            <div id="fugo">
-
-            </div>
-        <div class="col-md-4"></div>
+          
+ </div>
+ 
         </div>
+        </form>
         <script>
 function myFunction() {
     alert("Data Inserted successfully");

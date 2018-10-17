@@ -9,7 +9,7 @@ class cancel_model extends CI_Model{
 // For Add Cancel Tabele
  function add_cancel($data){
  //Inserting in Table(Credit) of Database(travel) 
-       $this->db->insert('00000_mst_cancel_reasons_reasons', $data);   
+       $this->db->insert('00000_mst_cancel_reasons', $data);   
     }
 
 

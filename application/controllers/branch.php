@@ -27,7 +27,7 @@ class Branch extends CI_Controller {
             $this->load->view('aside');
             return $this->load->view('pages/forms/add_branch');
 
-            //$this->load->view('insert_view');
+            
         } else {
             //Setting values for tabel columns
             $data = array(

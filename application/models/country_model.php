@@ -31,6 +31,17 @@ public function getCountryByCountryId($country_id)
     }
 
 
+// Fetching Country Name from Countries in ADD City As a drop down and inherit in States List
+    public function get_Countries()
+    {
+        $sql="SELECT * from 00000_mst_country INNER JOIN 00000_mst_state ON 00000_mst_country.country_id=00000_mst_state.country_id";
+        $result=$this->db->query($sql);
+        return $result->result();
+    }
+
+
+
+
 
 // Fetch in State as Country List
     public function getCountries_list()

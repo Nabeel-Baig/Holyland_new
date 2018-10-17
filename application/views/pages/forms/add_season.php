@@ -60,7 +60,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                <label>Season Name</label> <?php //echo form_error('season_name'); ?>
+                <label>Season Name</label> <?php echo form_error('seeson_name'); ?>
                   <input type="text" class="form-control" placeholder="Season Name" id="seeson_name" name="seeson_name">
                 </div>
                 <label for="gor_from_date">Gregorian Calendar <br><small>From</small> </label>
@@ -104,26 +104,26 @@
             <div class="box-body">
               <div class="form-group">
               <label>Term & Condition</label>
-                    <select list="hosting-plan" id="state" name="state" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
+                    <select list="hosting-plan" id="term_cond_id" name="term_cond_id" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
                   <option>Select Terms & Condition</option>
-                  <?php  foreach ($countries as $country){ ?>
-                    <option value="<?= $country->state_id ?>"><?= $country->state_name ?></option>
+                  <?php  foreach ($terms as $term){ ?>
+                    <option value="<?= $term->term_cond_id ?>"><?= $term->term_cond_desc ?></option>
                   <?php } ?>
                 </select>
               </div>
               <br>
               <div class="form-group">
               <label>Term & Condition Detail</label>
-                 <select list="hosting-plan" id="country" name="country" disabled="" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
+                 <select list="hosting-plan" id="term_cond_det_id" name="term_cond_det_id" disabled="" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
                   <option>Select Term & Condition Detail</option>
-                  <?php  foreach ($countries as $country) { ?>
-                    <option value="<?= $country->country_id ?>"><?= $country->country_name ?></option>
+                  <?php  foreach ($terms as $term) { ?>
+                    <option value="<?= $term->term_cond_det_id ?>"><?= $term->term_cond_det_desc ?></option>
                   <?php } ?>
                 </select>
               </div>
               <label for="gor_to_date"><br><small>To</small> </label>
               <div class="form-group">
-                <input type="date" class="form-control" id="gor_to_date" name="gor_to_dates">
+                <input type="date" class="form-control" id="gor_to_date" name="gor_to_date">
               </div>
 
               <label for="hij_to_date"><br><small>To</small> </label>
@@ -208,5 +208,34 @@
 <script src="<?php echo base_url('assets/dist/js/adminlte.min.js'); ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
-</body>
-</html>
+
+
+ <script type="text/javascript">
+    $(document).ready(function(){
+      $('#term_cond_id').on('change',function(){
+        var term_cond_id = $(this).val();
+        if(term_cond_id == '')
+        {
+          $('#term_cond_det_id').prop('disabled',true);
+        }
+        else
+        {
+          $('#term_cond_det_id').prop('disabled',false);
+        
+        $.ajax({
+            url:"<?php echo base_url() ?>term/get_term",
+            type: "POST",
+            data: {'term_cond_id' : term_cond_id},
+            dataType: 'json',
+            success: function(data){
+              $('#term_cond_det_id').html(data);
+            },
+            error: function(){
+              alert ('Error occur..!!');
+            }
+        });
+      }
+      });
+    });
+ </script>
+

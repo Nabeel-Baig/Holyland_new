@@ -300,7 +300,132 @@
 </script>
 
 
+
+
+
+
+
+
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit Room</h4>
+      </div>
+       <section class="content">
+      <div class="box" style="background: #c1c1c1;">
+      <div class="modal-body">
+        <section class="content">
+          <div class="row">
+            <br>
+            <br>
+            <br>
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" id="myForm" action="" method="post" class="form-horizontal">
+                <div class="box-body">
+                  <div class="form-group">
+                    <input type="hidden" name="room_id" class="form-control" value="0" placeholder="ID Auto Generate">
+                  </div>
+                  <div class="form-group">
+                    <label>room Name</label>
+                    <input type="text" class="form-control" placeholder="Name" name="room_type_name" style="width: 100%;padding: 9px;border-radius: 1px;">
+                  </div>
+
+                  <div class="form-group">
+                    <label>No Of Person</label>
+                    <input type="number" class="form-control" placeholder="Number Of Person" name="no_of_persons">
+                  </div>
+                  <!-- <div class="form-group">
+                    <input type="number" class="form-control" placeholder="No Of Bed">
+                  </div> -->
+
+                </div>
+                <!-- /.box-body -->
+
+                <!-- <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div> -->
+             
+
+              <!-- /.box -->
+
+
+            </div>
+            <div class="col-md-6">
+          
+                <div class="form-group" style="margin-top: 10%;">
+                  <label>Note</label>
+                  <input type="text" class="form-control" rows="5" name="note" placeholder="Note"></input>
+                </div>
+
+              <div class="form-group">
+          <label for="inactive_flag" class="" style="    font-weight: 400;margin-left: 6%;">
+            <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+            Active
+          </label>
+          <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
+            <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">
+            Inactive
+          </label>
+        </div>
+
+
+              </form>
+
+              <!-- /.box -->
+
+
+            </div>
+
+
+          </div>
+
+
+          <br>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4  center-block"> <button id="btnSave" class="btn btn-primary center-block" style="width: 50%;border-radius: 40px;">Submit</button> </div>
+            <div class="col-md-4"></div>
+          </div>
+
+          </form>
+
+        </section>
+      </div>
+    </div>
+  </section>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<!-- <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -308,6 +433,17 @@
         <h4 class="modal-title">Edit room</h4>
       </div>
       <div class="modal-body">
+        <section class="content">
+          <div class="row">
+            <br>
+            <br>
+            <br>
+         
+
+
+
+
+            <div class="col-md-6">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="room_id" value="0">
             <div class="form-group">
@@ -328,27 +464,32 @@
                 <input type="text" name="note" class="form-control">
               </div>
             </div>
-             <div class="form-group">
-                  <div class="col-md-8">
-                  <label for="inactive_flag" class="label-control col-md-4">Active
-                    <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
-                      </label>
-                  <label for="inactive_flag" class="label-control col-md-4">Inactive
-                    <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">
-                       </label>
-                  </div>
-                   </div>
+              <div class="form-group">
+          <label for="inactive_flag" class="" style="    font-weight: 400;margin-left: 6%;">
+            <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+            Active
+          </label>
+          <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
+            <input type="radio" name="inactive_flag" value="1" class="checkbox1 Inactive">
+            Inactive
+          </label>
+        </div>
+
            
           </form>
+           </div>
+            </div>
+
+        </section>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+    </div> 
+  </div> 
+</div> 
+ --> 
 <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -363,7 +504,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnDelete" class="btn btn-danger">Delete</button>
       </div>
-    </div><!-- /.modal-content -->
+    </div><!-- /.modal-content
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
