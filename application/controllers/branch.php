@@ -10,7 +10,7 @@ class Branch extends CI_Controller {
 
 
 // Function to insert Branch
-   public     function index() {
+   public function index() {
 
 //Including validation library
         $this->load->library('form_validation');
@@ -18,7 +18,7 @@ class Branch extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('branch_name', 'Branch Name', 'required|min_length[1]|max_length[50]');
+        $this->form_validation->set_rules('branch_name', 'Branch Name', 'required|min_length[1]|max_length[255]');
 
       
         

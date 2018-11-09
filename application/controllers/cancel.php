@@ -15,7 +15,7 @@ public   function index(){
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('reason_name', 'Reason Name', 'required|min_length[1]|max_length[50]');
+        $this->form_validation->set_rules('reason_name', 'Reason Name', 'required|min_length[1]|max_length[255]');
 
       
         

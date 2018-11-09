@@ -15,7 +15,7 @@
 |
 */
 $config['base_url']	= 'http://localhost/holylands';
-
+$config['upload_path'] = $_SERVER['DOCUMENT_ROOT']."/holylands/assets";
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -363,3 +363,5 @@ $config['proxy_ips'] = '';
 
 const ACTIVE = 0;
 const IN_ACTIVE = 1;
+const ERR_OPEN = "File was not uploaded.";
+const ERR_CLOSE = "File was not uploaded and closed.";

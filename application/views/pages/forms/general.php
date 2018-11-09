@@ -4,8 +4,10 @@
 
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
     <div class="box" style="width: 80%;margin-left: 10%;background: #c1c1c1;">
       <div class="box-body">
+        <form name="myForm" role="form" id="myform" action="<?php echo base_url('client'); ?>" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
     <!-- Content Header (Page header) -->
     <section class="content-header" style="margin-bottom: 3%">
       <h1>
@@ -36,15 +38,15 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            
               <div class="box-body">
                 <div class="form-group">
                   <label>ID</label>
                   <input type="text" class="form-control" placeholder="ID Auto Generate" disabled>
                 </div>
                 <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" class="form-control" placeholder="Name" id="exampleInputPassword1">
+                  <label>Name</label> <?php echo form_error('client_name'); ?>
+                  <input type="text" required="client_name" class="form-control" placeholder="Name" name="client_name" id="client_name" tabindex="1">
                 </div>
                  <div class="form-group">
                   <table>
@@ -52,7 +54,7 @@
                       <div class="field_wrapper">
                         <div>
                           <label>Fax</label>
-                          <input type="text" class="form-control" placeholder="Fax" style="width: 55%" name="fax[]" data-role="fax" value=""/>
+                          <input type="text" class="form-control" maxlength="11" minlength="10" placeholder="03333906233" style="width: 55%" name="fax[]" data-role="fax" value=""/ tabindex="4">
                           <a href="javascript:void(0);" class="add_button " title="Add field" style="position: relative;bottom: 31px;left: 163px;"><img src="<?php echo base_url('assets/images/add-icon.png') ?>"\></a>
                         </div>
                       </div>
@@ -61,78 +63,69 @@
                   
                 </div>
                 <div class="form-group" style="margin-top: -10%;">
-                  <form action="/action_page.php" method="get">
-                    <label>Credit Due Date</label>
-                    <input list="browsers" placeholder="Select Credit Due Date " name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers5">
+                    <label>Credit Term Desc</label>
+                    <input type="text" placeholder="Credit Term Desc" name="credit_term_desc" id="credit_term_desc" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="7">
+                    <!-- <datalist id="browsers5">
                       <option value="Internet Explorer">
                       <option value="Firefox">
                       <option value="Chrome">
                       <option value="Opera">
                       <option value="Safari">
-                    </datalist>
+                    </datalist> -->
 
-                  </form>
                 </div>
 
-<div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <label>State/Province</label>
-                    <input list="browsers" placeholder="Select State/Province" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers3">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                    <div class="form-group">
+                    <label>Country</label>
+                    <select name="country" id="country" required="country" style="width: 100%;border: 1px solid #d4d4d4;padding: 6px;" tabindex="10">
+                      <option value="">Select Country</option>
+                      <?php
+                      foreach ($country as $row) {
+                         echo '<option value="'.$row->country_id.'">'.$row->country_name.'</option>';
+                      }
+                      ?>
+                    </select>
+                   
                 </div>
 
-                 <div class="form-group">
-                  <label>Account Number</label>
-                  <input type="number" class="form-control" placeholder="Account Number" id="exampleInputEmail1">
+                <div class="form-group">
+                  <label>Account title</label>
+                  <input type="text" class="form-control" placeholder="Account title" id="exampleInputEmail1" tabindex="13">
                 </div>
+
+                    <div class="form-group">
+                    <label>Recovery Officer</label>
+                    <input list="browsers" placeholder="Recovery Officer" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="16">
+
+                </div>
+
+                     <div class="form-group">
+                  <label>GST No.</label>
+                  <input type="number" class="form-control" placeholder="GST No." name="gst_no" id="gst_no" tabindex="19">
+                </div>
+
                 <div class="form-group">
                   <label>VAT No</label>
-                  <input type="number" class="form-control" placeholder="VAT No" id="exampleInputEmail1">
+                  <input type="number" class="form-control" placeholder="VAT No" name="vat_no" id="vat_no" tabindex="22">
                 </div>
 
-                <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <label>Branch</label>
-                    <input list="browsers" placeholder="Select Branch" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers6">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
+              
+                     <div class="form-group">
+          <label class="pr-4" for="vat_flag">
+            <input type="checkbox" name="vat_flag" value="1" id="vat_flag" class="checkbox1" tabindex="27">No VAT
+          </label> 
+          <label class="pr-4" for="gst_flag">
+            <input type="checkbox" name="gst_flag" value="1" id="gst_flag" class="checkbox1" tabindex="28">NO GST
+          </label> 
+          <label class="pr-4" for="black_list_flag">
+            <input type="checkbox" name="black_list_flag" value="1" id="black_list_flag" class="checkbox1" tabindex="29">Blacklist
+          </label> 
+          <label class="pr-4" for="inactive_flag">
+            <input type="checkbox" name="inactive_flag" value="1" id="inactive_flag" class="checkbox1" tabindex="30">SUSPENDED
+          </label> 
 
-                  </form>
-                </div>
-                <div class="form-group">
-                  <label>GAZT No</label>
-                  <input type="number" class="form-control" placeholder="GAZT No" id="exampleInputEmail1">
-                </div>
-
-<div class="form-group">
-
-                  <p style="position: relative;top: 10px;">
-                    <input type="checkbox" name="checkbox1" class="checkbox1">
-                    NO VAT
-                    <label class="" style="    font-weight: 400;margin-left: 3%;">
-                      <input type="checkbox" name="checkbox1" class="checkbox1">
-                      Suspended
-                    </label>
-                    <label style="    font-weight: 400;    margin-left: 3%;">
-                      <input type="checkbox" name="checkbox1" class="checkbox1">
-                      Black List
-                    </label>
-                  </p>
-                </div>
+    </div>
+          
 
 
 
@@ -164,7 +157,6 @@
               <!-- <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div> -->
-            </form>
           
           <!-- /.box -->
 
@@ -174,83 +166,67 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+           
               <div class="box-body">
                  
                 <div class="form-group">
                   <label>Confirm Credit Limit</label>
-                  <input type="text" class="form-control" placeholder="Confirm Credit Limit" id="exampleInputEmail1">
+                  <input type="text" class="form-control" placeholder="Confirm Credit Limit" name="credit_limit" id="credit_limit" tabindex="2">
                 </div>
                 <div class="form-group" >
                   <label>Short Name</label>
-                  <input type="text" class="form-control" placeholder="Short Name" id="exampleInputEmail1">
+                  <input type="text" class="form-control" placeholder="Short Name" name="client_sht_name" id="client_sht_name" tabindex="5">
                 </div>
 
                 <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <label>Salesman</label>
-                    <input list="browsers" placeholder="Select Salesman" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                    <label>SalesPerson</label>
+                    <select name="salesperson" id="salesperson" required="salesperson" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="8">
+                      <option value="">Select SalesPerson</option>
+                      <?php foreach ($sales as $salesperson) { ?>
+                        <option value="<?= $salesperson->salesperson_id ?>"><?= $salesperson->salesperson_name ?></option>
+                      <?php } ?>
+                    </select>
                 </div>
 
                 <div class="form-group">
                   <label>Commission</label>
-                  <input type="text" class="form-control" placeholder="Commission">
+                  <input type="text" class="form-control" placeholder="Commission" name="salesperson_commission" id="salesperson_commission" tabindex="11">
                 </div>
 
                 <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <label>Country</label>
-                    <input list="browsers" placeholder="Select Country" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers1">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                  <label>State/Province</label>
+                  <select name="state" id="state" required="state" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="14">
+                    <option value="">Select State</option>
+                  </select>
+                    
                 </div>
 
-                <div class="form-group">
-                  <label>Address</label>
-                  <input type="text" class="form-control" placeholder="Address" id="exampleInputEmail1">
+                 <div class="form-group">
+                  <label>Account Number</label>
+                  <input type="number" class="form-control" placeholder="Account Number" name="gl_ac_no" id="gl_ac_no" tabindex="17">
                 </div>
+                
 
                 <div class="form-group" style="">
                   <label>Website</label>
-                  <input type="text" class="form-control" placeholder="Website">
+                  <input type="text" class="form-control" placeholder="Website" name="website" id="website" tabindex="20">
                 </div>
 
 
                 <div class="form-group">
-                  <form action="/action_page.php" method="get">
                     <label>Category</label>
-                    <input list="browsers" placeholder="Select Category" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers6">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                    <select name="category" id="category" required="category" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="23">
+                      <option value="">Select Category</option>
+                      <?php foreach ($categories as $category) { ?>
+                        <option value="<?= $category->category_id ?>"><?= $category->category_desc ?></option>
+                      <?php } ?>
+                    </select>
                 </div>
                 
 
                  <div class="form-group">
                   <label>NTN No.</label>
-                  <input type="number" class="form-control" placeholder="NTN No." id="exampleInputEmail1">
+                  <input type="number" class="form-control" placeholder="NTN No." name="ntn_no" id="ntn_no" tabindex="26">
                 </div>
                 
 
@@ -273,7 +249,6 @@
               <!-- <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div> -->
-            </form>
           
           <!-- /.box -->
 
@@ -283,23 +258,31 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+      
+
               <div class="box-body">
 
                 <div class="form-group">
-                  <form action="/action_page.php" method="get">
                     <label>Dedicated Hotels</label>
-                    <input list="browsers" placeholder="Dedicated Hotels" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers7">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                    <select name="hotel" id="hotel" required="hotel" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="3">
+                      <option value="">Select Hotel</option>
+                      <?php foreach ($hotels as $hotel) { ?>
+                        <option value="<?= $hotel->hotel_id ?>"><?= $hotel->hotel_name ?></option>
+                      <?php } ?>
+                    </select>
                 </div>
+
+                  <div class="form-group">
+                    <label>Branch</label>
+                    <select name="branch" id="branch" required="branch" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="6">
+                      <option value="">Select Branch</option>
+                      <?php foreach ($branches as $branch) { ?>
+                        <option value="<?= $branch->branch_id ?>"><?= $branch->branch_name ?></option>
+                      <?php } ?>
+                    </select>
+                </div>
+               
+
 
                 <div class="form-group">
 
@@ -308,7 +291,7 @@
          <div class="field_wrapper">
            <div>
             <label>Phone</label>
-             <input type="text" class="form-control" placeholder="Phone" data-role="phone" style="width: 55%" name="phone[]" value=""/>
+             <input type="text" required="phone" class="form-control" maxlength="11" minlength="10" placeholder="03333906233" data-role="phone" style="width: 55%" name="phone[]" value=""/ tabindex="9">
              <a href="javascript:void(0);" class="add_button " title="Add field" style="position: relative;bottom: 31px;left: 163px;"><img src="<?php echo base_url('assets/images/add-icon.png') ?>"/></a>
            </div>
          </div>
@@ -318,69 +301,43 @@
                 </div>
 
                 <div class="form-group" style="margin-top: -10%">
-                  <form action="/action_page.php" method="get">
                     <label>Payment Method</label>
-                    <input list="browsers" placeholder="Select Payment Method" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers2">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                    <select name="payment" id="payment" required="payment" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="12">
+                      <option value="">Select Payment Method</option>
+                      <?php foreach ($payments as $payment) { ?>
+                        <option value="<?= $payment->pay_terms_id ?>"><?= $payment->pay_term_desc ?></option>
+                      <?php } ?>
+                    </select>
                 </div>
 
-                <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <label>City</label>
-                    <input list="browsers" placeholder="Select City" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers4">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
+                
+                
 
-                  </form>
+                  <div class="form-group">
+                    <label>City</label>
+                    <select name="city" id="city" required="city" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="15">
+                      <option value="">Select City</option>
+                    </select>
+                    
                 </div>
                 
-                <div class="form-group">
-                  <label>Account title</label>
-                  <input type="text" class="form-control" placeholder="Account title" id="exampleInputEmail1">
-                </div>
-
- <div class="form-group">
-  <label>Email</label>
-                  <input type="email" class="form-control" placeholder="Email" id="exampleInputEmail1">
+                  <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" required="email" class="form-control" placeholder="Email" name="email_id" id="email_id" tabindex="18">
                 </div>
                
-
-
                 <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <label>Recovery Officer</label>
-                    <input list="browsers" placeholder="Recovery Officer" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers7">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                  <label>Address</label>
+                  <input type="text" required="address" class="form-control" placeholder="Address" name="address" id="address" tabindex="21">
                 </div>
 
-                <div class="form-group">
-                  <label>GST No.</label>
-                  <input type="number" class="form-control" placeholder="GST No." id="exampleInputEmail1">
-                </div>
+
+              
+
+           
                 <div class="form-group">
                   <label>Instructions</label>
-                  <input type="text" class="form-control" placeholder="Instructions" id="exampleInputEmail1">
+                  <input type="text" class="form-control" placeholder="Instructions" name="note" id="note" tabindex="24">
                 </div>
 
                 <!-- <div class="form-group">
@@ -400,7 +357,6 @@
               <!-- <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div> -->
-            </form>
         </div>
       </div>
       <div class="row" style="margin-bottom: 3%">
@@ -412,23 +368,18 @@
         <div class="col-md-4">
           <div class="form-group">
             <label>Travel No</label>
-                  <input type="number" class="form-control" placeholder="Travel No" id="exampleInputEmail1" style="    width: 95%;margin-left: 2%;">
+                  <input type="number" class="form-control" placeholder="Travel No" name="travel_no" id="travel_no" style="    width: 95%;margin-left: 2%;" tabindex="31">
                 </div>
         </div>
         <div class="col-md-4">
            <div class="form-group">
-             <form action="/action_page.php" method="get">
               <label>Travel Type</label>
-               <input list="browsers" placeholder="Select Travel Type" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-               <datalist id="browsers6">
-                 <option value="Internet Explorer">
-                 <option value="Firefox">
-                 <option value="Chrome">
-                 <option value="Opera">
-                 <option value="Safari">
-               </datalist>
-
-             </form>
+              <select name="travel" id="travel" required="travel" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="32">
+                <option value="">Select Travel Type</option>
+                <?php foreach ($travels as $travel) { ?>
+                  <option value="<?= $travel->travel_type_id ?>"><?= $travel->travel_type_desc ?></option>
+              <?php } ?>
+              </select>
                 </div>
         </div>
 
@@ -476,27 +427,14 @@
               <table id="myTable" class=" table order-list"  style="width:100%">
                 <thead>
                 <tr class="info">
-                <th>ID</th>
+                
                 <th>Description</th>
                 <th>File Name</th>
                 </tr>
 
                 </thead>
                 <tbody>
-               <tr>
-            <td class="col-sm-4">
-                <input type="hidden" name="file_id[]" class="form-control" placeholder="ID Auto Generate" />
-            </td>
-            <td class="col-sm-4">
-                <input type="mail" name="file_description[]" placeholder="File Description"  class="form-control"/>
-            </td>
-            <td class="col-sm-3">
-                <input type="file" name="file_name[]" placeholder="File Upload" class="form-control"/>
-            </td>
-            <td class="col-sm-2"><a class="deleteRow"></a>
-
-            </td>
-        </tr>
+               
                 </tbody>
             <tfoot>
                     <tr>
@@ -517,7 +455,7 @@
         
         <div class="col-md-4">
       
-          <button class="accordion btn-primary">Contact Person
+          <button class="accordion btn-primary" type="button">Contact Person
             <div class="container" onclick="myFunction(this)" style="margin-left: 74%;margin-top: -9%;">
               <div class="bar1"></div>
               <div class="bar2"></div>
@@ -539,35 +477,35 @@
       
                       <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" placeholder="Name" name="lname[]" id="lname">
+                        <input type="text" class="form-control" placeholder="Name" name="contact_person_name[]" id="contact_person_name">
                       </div>
       
                       <div class="form-group">
                         <label>Title</label>
-                        <input type="text" class="form-control" placeholder="Title" name="title[]" id="title">
+                        <input type="text" class="form-control" placeholder="Title" name="contact_person_title[]" id="contact_person_title">
                       </div>
       
                       <div class="form-group">
                         <label>Phone</label>
-                        <input type="text" class="form-control" placeholder="Phone" name="phone[]" id="phone">
+                        <input type="text" class="form-control" maxlength="11" minlength="10" placeholder="03333906233" name="contact_person_phone[]" id="contact_person_phone">
                       </div>
       
                     <div class="form-group">
                       <label>Mobile</label>
-                        <input type="text" class="form-control" placeholder="Mobile" name="mobile[]" id="mobile">
+                        <input type="text" class="form-control" maxlength="11" minlength="10" placeholder="Mobile" name="contact_person_mobile[]" id="contact_person_mobile">
                       </div>
       
                       <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" placeholder="Email" name="email[]" id="email">
+                        <input type="text" class="form-control" placeholder="Email" name="contact_person_email[]" id="contact_person_email">
                       </div>
         <div class="form-group">
           <label for="inactive_flag" class="" style="    font-weight: 400;margin-left: 6%;">
-            <input type="radio" name="inactive_flag[]" id="inactive_flag" value="0" class="checkbox1">
+            <input type="radio" name="contact_person_inactive_flag[]" id="contact_person_inactive_flag"  value="0" class="checkbox1">
             Active
           </label>
           <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
-            <input type="radio" name="inactive_flag[]" id="inactive_flag" value="1" class="checkbox1">
+            <input type="radio" name="contact_person_inactive_flag[]" id="contact_person_inactive_flag" value="1" class="checkbox1">
             Inactive
           </label>
         </div>
@@ -578,7 +516,7 @@
       
       
                       <div class="form-group">
-                        <input type="button" class="btn btn-lg btn-block " id="addrows" value="Add Row" />
+                        <button type="button" class="btn btn-primary form-control center-block" id="addrows" value="Add Row" style="width: 50%;border-radius: 40px;">Add</button>
                       </div>                
       
         <script>
@@ -609,7 +547,6 @@
           <h3>Contact Person</h3>
           <thead>
           <tr class="info">
-            <th>S.No</th>
             <th>Name</th>
             <th>Tittle</th>
             <th>Phone No.</th>
@@ -621,26 +558,7 @@
           </tr>
           </thead>
           <tbody>
-          <!-- <tr>
-            <td></td>
-            <td>Ahsan</td>
-            <td>Ali</td>
-            <td> 4</td>
-            <td>Pakistan</td>
-            <td>Karachi</td>
-            <td>Active</td>
-            <td>
-              <a onclick="editHtmlTbleSelectedRow();" class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
-
-              </a>
-
-              <a onclick="removeSelectedRow();" class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
-
-              </a>
-            </td>
-
-          </tr> -->
-
+          
 
       
 
@@ -648,7 +566,7 @@
 
         </table>
       </div>
-
+    </form>
     </div>
   
  
@@ -657,12 +575,13 @@
 
      <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" form="myform" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
           <br>
 
-</form>
+
+
 
     </section>
   </div>
@@ -695,7 +614,19 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-</div>
+</div> 
+<script type="text/javascript">
+    function validateForm() {
+      var x = document.forms["myForm"]["client_name"].value;
+      if (x == "") {
+        alert("Client Name must be filled out");
+        return false;
+      }
+      else {
+        alert("Data Inserted Successfully");
+      }
+    }
+</script>
 
 <!-- ./wrapper -->
 
@@ -722,7 +653,7 @@
         //Once add button is clicked
         $(addButton).click(function(){
             var nam = $(this).parents('.field_wrapper').find('input').attr('data-role');
-            var fieldHTML = '<div><input type="text" class="form-control" placeholder="'+nam.substr(0,1).toUpperCase()+nam.substr(1)+'" style="width: 55%" name="'+nam+'[]" value=""/><a href="javascript:void(0);"  style="position: relative;bottom: 31px;left: 163px;" class="remove_button"><img src="<?php echo base_url('assets/images/remove-icon.png') ?>"/></a></div>'; //New input field html
+            var fieldHTML = '<div><input type="text" class="form-control" maxlength="11" minlength="10" placeholder="'+nam.substr(0,1).toUpperCase()+nam.substr(1)+'" style="width: 55%" name="'+nam+'[]" value=""/><a href="javascript:void(0);"  style="position: relative;bottom: 31px;left: 163px;" class="remove_button"><img src="<?php echo base_url('assets/images/remove-icon.png') ?>"/></a></div>'; //New input field html
             //Check maximum number of input fields
             if(x < maxField){
                 x++; //Increment field counter
@@ -770,9 +701,10 @@ tr td:first-child:before
         var newRow = $("<tr>");
         var cols = "";
 
-        cols += '<td><input type="hidden" class="form-control" placeholder="ID Auto Generate" name="file_id' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" placeholder="File Description" name="file_description' + counter + '"/></td>';
-        cols += '<td><input type="file" class="form-control" placeholder="Upload File" name="file_name' + counter + '"/></td>';
+      
+        cols += '<td><input type="text" class="form-control" name="file_description['+counter+'][]" id="file_description" placeholder="File Description"/></td>';
+        cols += '<td><input type="file" class="form-control" placeholder="Upload File" name="file_name['+counter+'][]" id="file_name"/></td>';
+
 
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
         newRow.append(cols);
@@ -809,24 +741,45 @@ function calculateGrandTotal() {
 
 <script type="text/javascript">
           $(document).ready(function () {
-    var counter = 0;
+    var c_p_counter = 0;
 
     $("#addrows").on("click", function () {
         var newRow = $("<tr>");
         var cols = "";
+        var name = $("#contact_person_name").val();
+        var title = $("#contact_person_title").val();
+        var phone = $("#contact_person_phone").val();
+        var mobile = $("#contact_person_mobile").val();
+        var email = $("#contact_person_email").val();
+        var inactive_flag = $("#contact_person_inactive_flag:checked").val();
+        var active = '';
+        var inactive = '';
+        console.log(inactive_flag);
+        if(inactive_flag == 0)
+          active = 'checked';
+        else if(inactive_flag == 1)
+          inactive = 'checked';
 
-        cols += '<td><input type="hidden" class="form-control" placeholder="Contact Name" name="cont_name[]"/></td>';
-        cols += '<td><input type="text" class="form-control" placeholder="Contact Name" name="lname[]"/></td>';
-        cols += '<td><input type="text" class="form-control" placeholder="Contact Title" name="title[]"/></td>';
-        cols += '<td><input type="number" class="form-control" placeholder="Contact Phone" name="phone[]"/></td>';
-        cols += '<td><input type="number" class="form-control" placeholder="Contact Mobile" name="mobile[]"/></td>';
-        cols += '<td><input type="email" class="form-control" placeholder="Contact Email" name="email[]"/></td>';
-        cols += '<td><label>Active</label><input type="radio" class="checkbox1" name="inactive_flag[]"/><label>Inactive</label><input type="radio" class="checkbox1" name="inactive_flag[]"/></td>';
+
+        cols += '<td><input type="text" class="form-control" placeholder="Contact Name" value="'+name+'" name="contact_person_name['+ c_p_counter +'][]" required="contact_person_name"/></td>';
+        cols += '<td><input type="text" class="form-control" placeholder="Contact Title" value="'+title+'" name="contact_person_title['+ c_p_counter +'][]" required="contact_person_title"/></td>';
+        cols += '<td><input type="text" maxlength="11" minlength="10" class="form-control" placeholder="03333906233" value="'+phone+'" name="contact_person_phone['+ c_p_counter +'][]"/></td>';
+        cols += '<td><input type="text" maxlength="11" minlength="10" class="form-control" placeholder="03333906233" value="'+mobile+'" name="contact_person_mobile['+ c_p_counter +'][]" required="contact_person_mobile"/></td>';
+        cols += '<td><input type="email" class="form-control" placeholder="Contact Email" value="'+email+'" name="contact_person_email['+ c_p_counter +'][] required="contact_person_email"/></td>';
+        cols += '<td><label><input type="radio" class="checkbox1 active" value="0" '+active+' name="contact_person_inactive_flag['+ c_p_counter +'][]"/>Active</label><label><input type="radio" class="checkbox1 inactive" value="1" '+inactive+' name="contact_person_inactive_flag['+ c_p_counter +'][]"/>Inactive</label></td>';
 
         cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
         newRow.append(cols);
         $("table.orders-lists").append(newRow);
-        counter++;
+        c_p_counter++;
+        $("#contact_person_name").val("");
+        $("#contact_person_title").val("");
+        $("#contact_person_phone").val("");
+        $("#contact_person_mobile").val("");
+        $("#contact_person_email").val("");
+        $(".col-md-4 input[name='contact_person_inactive_flag[]']").each(function(){
+          $(this).prop("checked", false);
+        });
     });
 
 
@@ -857,3 +810,50 @@ function calculateGrandTotal() {
 
 </body>
 </html>
+
+<script>
+$(document).ready(function(){
+ $('#country').change(function(){
+  var country_id = $('#country').val();
+  if(country_id != '')
+  {
+   $.ajax({
+    url:"<?php echo base_url(); ?>client/fetch_state",
+    method:"POST",
+    data:{country_id:country_id},
+    success:function(data)
+    {
+     $('#state').html(data);
+     $('#city').html('<option value="">Select City</option>');
+    }
+   });
+  }
+  else
+  {
+   $('#state').html('<option value="">Select State</option>');
+   $('#city').html('<option value="">Select City</option>');
+  }
+ });
+
+ $('#state').change(function(){
+  var state_id = $('#state').val();
+  if(state_id != '')
+  {
+   $.ajax({
+    url:"<?php echo base_url(); ?>city/fetch_city",
+    method:"POST",
+    data:{state_id:state_id},
+    success:function(data)
+    {
+     $('#city').html(data);
+    }
+   });
+  }
+  else
+  {
+   $('#city').html('<option value="">Select City</option>');
+  }
+ });
+ 
+});
+</script>

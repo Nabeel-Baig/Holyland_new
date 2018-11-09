@@ -39,7 +39,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('branch'); ?>" method="post">
+            <form role="form" name="myForm" id="myForm" action="<?php echo base_url('branch'); ?>" onsubmit="return validateForm()" method="post">
               <div class="box-body">
                 <div class="form-group" style="margin-top: -1%;">
                   <?php echo form_label('ID'); ?>
@@ -91,7 +91,7 @@
       </div>
       <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -104,10 +104,17 @@
       <br>
       
 <script>
-  function myFunction(){
-    alert("Data Inserted Successfully.!");
-  }
-</script>
+  function validateForm() {
+    var x = document.forms["myForm"]["branch_name"].value;
+    if (x == "") {
+        alert("Branch Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
+}</script>
 </form>
 
     </section>

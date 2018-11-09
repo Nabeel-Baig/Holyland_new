@@ -18,21 +18,15 @@ class State extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('country', 'Country Name', 'required|min_length[0]|max_length[4]');
+        $this->form_validation->set_rules('country', 'Country Name', 'required|min_length[0]|max_length[11]');
 
         //Validating Name Field
-        $this->form_validation->set_rules('state_name', 'State Name', 'required|min_length[3]|max_length[15]');
+        $this->form_validation->set_rules('state_name', 'State Name', 'required|min_length[3]|max_length[255]');
 
-        //Validating Email Field
-        $this->form_validation->set_rules('state_sht_name', 'State Short Name', 'required|min_length[2]|max_length[15]');
-
-
-        //Validating Radio Button
-        $this->form_validation->set_rules('inactive_flag', 'Status', 'required|min_length[0]|max_length[1]');
-
+  
        $data =  array();
 
-       $data['countries'] = $this->country_model->getCountries_list();
+       $data['countries'] = $this->country_model->fetch_country();
 
         if ($this->form_validation->run() == FALSE) {
              $this->load->view('header');
@@ -53,6 +47,7 @@ class State extends CI_Controller {
             //Transfering data to Model
             $this->state_model->state_insert($state);
             $state['message'] = 'Data Inserted Successfully';
+             $state['countries'] = $this->country_model->fetch_country();
             //Loading View
              $this->load->view('header');
             $this->load->view('aside');
@@ -67,7 +62,7 @@ public      function state_list(){
             $data['countries'] = $this->state_model->getCountries();
             /*$data['states'] = $this->state_model->show_state();*/
             //$data['single_state'] = $this->state_model->show_state_id($id);*/
-            $data['countries'] = $this->country_model->getCountries_list();
+            $data['countries'] = $this->country_model->fetch_country();
              $this->load->view('header');
             $this->load->view('aside');
             //$this->load->view('nav_bar');

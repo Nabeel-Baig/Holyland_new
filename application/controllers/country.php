@@ -15,10 +15,8 @@ public   function index(){
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('country_name', 'Country Name', 'required|min_length[3]|max_length[15]');
+        $this->form_validation->set_rules('country_name', 'Country Name', 'required|min_length[3]|max_length[255]');
 
-        //Validating Short name Field
-        $this->form_validation->set_rules('country_sht_name', 'Short Name', 'required|min_length[2]|max_length[15]');
        
         if ($this->form_validation->run() == FALSE) {
              $this->load->view('header');

@@ -325,7 +325,7 @@ function myFunction() {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Edit City</h4>
       </div>
-      <div class="modal-body">
+     <!--  <div class="modal-body">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="city_id" value="0">
            <div class="form-group">
@@ -367,7 +367,73 @@ function myFunction() {
                    </div>
            
           </form>
-      </div>
+      </div> -->
+
+      
+     <section class="content">
+      <div class="box" style="background: #c1c1c1;">
+      <div class="modal-body">
+        <form role="form" id="myForm" action="" method="post" class="form-horizontal">
+        <section class="content">
+          <div class="row">
+      
+            <div class="col-md-6">
+
+              
+                <div class="box-body">
+                  <div class="form-group">
+                    <input type="hidden" name="city_id" class="form-control" value="0" placeholder="ID Auto Generate">
+                  </div>
+                  <div class="form-group">
+                    <label>Country Name</label>
+                    <select list="hosting-plan" id="country_id" name="country_id" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
+                  <option>Select Country</option>
+                  <?php  foreach ($countries as $country) { ?>
+                    <option value="<?= $country->country_id ?>"><?= $country->country_name ?></option>
+                  <?php } ?>
+                </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>City Name</label>
+                    <input type="text" name="city_name" class="form-control">
+                  </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+          
+                <div class="form-group" style="margin-top: 10%;">
+                  <label>State Name</label>
+                 <select name="state_id" id="state_id" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
+                    <option value="">Select State</option>
+                </select>
+                </div>
+
+              <div class="form-group">
+          <label for="inactive_flag" class="" style="    font-weight: 400;margin-left: 6%;">
+            <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+            Active
+          </label>
+          <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
+            <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">
+            Inactive
+          </label>
+        </div>
+
+
+              </form>
+
+              <!-- /.box -->
+            </div>
+
+          </div>
+
+       </section>
+   
+ </div>
+</div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
@@ -578,15 +644,14 @@ function myFunction() {
             $('#state_id').prop('disabled',false);
           
           $.ajax({
-              url:"<?php echo base_url() ?>city/get_state",
-              type: "POST",
-              data: {'country_id' : country_id},
-              dataType: 'json',
+              url:"<?php echo base_url(); ?>client/fetch_state",
+              method: "POST",
+              data:{country_id:country_id},
               success: function(data){
                 $('#state_id').html(data);
               },
               error: function(){
-                alert ('Error occur..!!');
+                alert ('Error occur..!!12');
               }
           });
         }

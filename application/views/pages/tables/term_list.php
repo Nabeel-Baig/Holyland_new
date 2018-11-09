@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         Setup Data
-        <small>Term List</small>
+        <small>Detail List</small>
       </h1>
       <ol class="breadcrumb">
         <li><button class="btn btn-dropbox btn-sm"><a href="<?php echo base_url('term'); ?>" style="color: whitesmoke">Add</a></button></li>
@@ -322,7 +322,7 @@ function myFunction() {
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Edit Term</h4>
       </div>
-      <div class="modal-body">
+      <!-- <div class="modal-body">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="term_cond_det_id" value="0">
             <div class="form-group">
@@ -330,9 +330,9 @@ function myFunction() {
               <div class="col-md-8">
                 <select list="hosting-plan" id="term_cond_id" name="term_cond_id" style="width: 100%;padding: 5px;border: #cecece solid 1px;">
                   <option>Select Term</option>
-                  <?php  foreach ($terms as $term) { ?>
+                  <?php  //foreach ($terms as $term) { ?>
                     <option value="<?= $term->term_cond_id ?>"><?= $term->term_cond_desc ?></option>
-                  <?php } ?>
+                  <?php //} ?>
                 </select>
               </div>
             </div>
@@ -356,7 +356,88 @@ function myFunction() {
                    </div>
            
           </form>
-      </div>
+      </div> -->
+      <section class="content">
+      <div class="modal-body">
+         <form id="myForm" action="" method="post" class="form-horizontal">        
+        
+          <div class="box" style="background: #c1c1c1;">
+             <div class="box-body">
+          <div class="row">
+            
+            <!-- left column -->
+            <div class="col-md-6">
+          
+            
+                <div class="box-body">
+                  <input type="hidden" name="term_cond_det_id" value="0">
+                  <div class="form-group">
+                    <label>Term Name</label>
+                    <select list="hosting-plan" id="term_cond_id" name="term_cond_id" style="width: 100%;padding: 5px;border: #cecece solid 1px;">
+                  <option value="">Select Term</option>
+                  <?php  foreach ($terms as $term) { ?>
+                    <option value="<?= $term->term_cond_id ?>"><?= $term->term_cond_desc ?></option>
+                  <?php } ?>
+                </select>
+                  </div>
+                  
+
+
+
+
+                </div>
+                <!-- /.box-body -->
+
+                <!-- <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div> -->
+
+
+                <!-- /.box -->
+
+
+            </div>
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <!-- /.box-header -->
+              <!-- form start -->
+
+              <div class="form-group" style="margin-top: 4%">
+                <label>Term Description Name</label>
+                <input type="text" class="form-control" placeholder="Term & Condition Description" name="term_cond_det_desc" style="width: 95%">
+              </div>
+
+              <!-- /.box -->
+
+
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" style="">
+
+                <label for="inactive_flag" class="" style="    font-weight: 400; margin-left: 3%">
+                  <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+                  Active
+                </label>
+                <label for="inactive_flag" style="    font-weight: 400;    margin-left: 7%;">
+                  <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">
+                  Inactive
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+          <br>
+          
+
+          </form>
+</div>
+</div>
+        </section>
+    
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>

@@ -1,9 +1,10 @@
- <!-- Content Wrapper. Contains page content -->
+
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header" style="margin-bottom: 3%">
       <h1>
-        Setup Data
+        Master Data
         <small>Add Country</small>
       </h1>
       <ol class="breadcrumb" style="    background: transparent;
@@ -16,317 +17,155 @@
     left: 393px;
     border-radius: 2px;">
         <li>
-         <!--  <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Record No" style="width: 182%">
+          <!-- <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Record No" id="exampleInputPassword1" placeholder="Password" style="width: 182%">
           </div> -->
         </li>
         
       </ol>
 
     </section>
-<!-- 
-    <script>
-          function ValidateTextBox()
-{
-  var productselect=false;
-  if(document.contact.country_name.value=="")
-  {
-      alert("Please enter the Country name.");
-      document.contact.country_name.focus();
-  }
-    for (var i = 0; i<document.contact.inactive_flag.length;i++) {
-        if(document.contact.inactive_flag[i].checked)
-          productselect=true;
-      }
-      if (!productselect) {
-        alert("Please select a checkbox.");
-        return false;
-      }
-      return false;
-  }
-</script>
- -->
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <div class="box" style="width: 80%;margin-left: 10%;background: #c1c1c1;">
         <div class="box-body">
-        <h4>Country</h4>
-      </div>
+
+        <br>
+        <br>
+        <br>
+        <div class="col-md-1"></div>
         <!-- left column -->
-        <form action="<?php echo base_url('country'); ?>" method = "post">
-           <!--  <?php if (isset($message)) { ?>
-                <CENTER><h3 style="color:blue;">Data inserted successfully</h3></CENTER><br>
-            <?php } ?> -->
-        <div class="col-md-3">
-          <div class="form-group">
-          <?php echo form_label('ID'); ?>
-                  <input type="email" class="form-control" placeholder="ID Auto Generate" disabled>
+        <div class="col-md-5">
+          <!-- general form elements -->
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" <?php echo base_url('country'); ?> method="post">
+              <div class="box-body">
+                <div class="form-group">
+                  <label>ID</label>
+                  <input type="number" class="form-control" placeholder="ID Auto Generate" disabled>
                 </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-          <?php echo form_label('Country Name'); ?> <?php echo form_error('country_name'); ?> <br />
-          <?php echo form_input(array('id' => 'country_name', 'name' => 'country_name', 'class'=>'form-control', 'placeholder'=>'Country Name')); ?><br />
+
+                <!-- <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Name" id="exampleInputPassword1">
+                </div> -->
+
+                <div class="form-group">
+                  <label>Short Name</label>
+                  <input type="text" class="form-control" placeholder="Short Name" name="country_sht_name" id="country_sht_name">
                 </div>
-        </div>
-        <div class="col-md-3">
-           <div class="form-group" style="margin-top: 0%">
-           <?php echo form_label('Country Short Name'); ?><?php echo form_error('country_sht_name'); ?> <br />
-          <?php echo form_input(array('id' => 'country_sht_name', 'name' => 'country_sht_name', 'class'=>'form-control', 'placeholder'=>'Country Short Name')); ?><br />
+                <!-- <div class="form-group">
+                  <input type="number" class="form-control" placeholder="No Of Bed" id="exampleInputEmail1">
+                </div> -->
+
               </div>
+              <!-- /.box-body -->
+
+              <!-- <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div> -->
+           
+          
+          <!-- /.box -->
+
+
         </div>
+        <div class="col-md-5">
 
-        <div class="col-md-3">
-          <div class="form-group">
+          <div class="form-group" style="margin-top: 10px;"> 
+            <label>Country Name</label> <?php echo form_error('country_name'); ?>
+                  <input type="name" class="form-control" placeholder="Name" name="country_name" id="country_name" style="width: 96%;margin-left: 2%;">
+                </div>
 
-            <label class="" for="inactive_flag" style="    font-weight: 400; margin-top: 5%">
-              <input type="radio" name="inactive_flag" value="0" class="checkbox1" >
-              Active
-            </label>
-            <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
-              <input type="radio" name="inactive_flag" value="1" class="checkbox1">
-              Inactive
-            </label>
+                <div class="form-group" style="padding-top: 10%;">
+
+                 <label for="inactive_flag" class="" style="font-weight: 400; margin-left: 3%">
+                   <input type="radio" name="inactive_flag" value="0" class="checkbox1">
+                   Active
+                 </label>
+                 <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
+                   <input type="radio" name="inactive_flag" value="1" class="checkbox1">
+                   Inactive
+                 </label>
+               </div>
 
 
 
-          </div>
+
+          <!-- general form elements -->
+            <!-- /.box-header -->
+            <!-- form start -->
+          <!-- <form>
+            <div class="form-group" style="margin-top: -3%">
+              <label for="comment"></label>
+              <textarea class="form-control" rows="5" id="comment" placeholder="Note"></textarea>
+            </div>
+          </form> -->
+          
+          <!-- /.box -->
+
+
         </div>
-        <div class="row">
+<div class="col-md-1"></div>
+
+
+
+
+</div>
+<div class="row">
 <div class="col-md-4"></div>
-<div class="col-md-4  center-block"> <button id="submit" value="submit" onclick="myFunction()" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
-            <?php echo form_close(); ?><br/>
-              <div class="col-md-4"></div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" form="myForm" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
+        <div class="col-md-4"></div>
       </div>
       <br>
       </div>
-
-     
       </div>
 
 
-
-    
-
-
-
-
-<script>
-function myFunction() {
-    alert("Data Inserted successfully");
-}
-</script>
-
-
-   
-        <!-- left column -->
-        
+      <br>
+      <br>
+      <br>
       
 
-
-
-
-     
 </form>
 
     </section>
   </div>
 
- 
+ <script type="text/javascript">
+   function validateForm() {
+    var x = document.forms["myForm"]["country_name"].value;
+    if (x == "") {
+        alert("Country Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
+}
+ </script>
+
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+     <!--  <b>Version</b> 2.4.0 -->
     </div>
-    <strong>Copyright &copy; 2018-2019 <a href="<?php echo base_url('home') ?>">Holy Land</a></strong>
+      <strong>Copyright &copy; 2018-2019  <a href="http://incisivesoft.com/">Incisivesoft</a></strong>
   </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
+   <div class="tab-content">
       <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
+      <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active" style="background-color: #222d32;"><div><h4 class="control-sidebar-heading">Layout Options</h4><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="fixed" class="pull-right"> Fixed layout</label><p>Activate the fixed layout. You can't use fixed and boxed layouts together</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="layout-boxed" class="pull-right"> Boxed Layout</label><p>Activate the boxed layout</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-layout="sidebar-collapse" class="pull-right"> Toggle Sidebar</label><p>Toggle the left sidebar's state (open or collapse)</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-enable="expandOnHover" class="pull-right"> Sidebar Expand on Hover</label><p>Let the sidebar mini expand on hover</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-controlsidebar="control-sidebar-open" class="pull-right"> Toggle Right Sidebar Slide</label><p>Toggle between slide over content and push content effects</p></div><div class="form-group"><label class="control-sidebar-subheading"><input type="checkbox" data-sidebarskin="toggle" class="pull-right"> Toggle Right Sidebar Skin</label><p>Toggle between dark and light skins for the right sidebar</p></div><h4 class="control-sidebar-heading">Skins</h4><ul class="list-unstyled clearfix"><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin">Blue</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin">Black</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin">Purple</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin">Green</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin">Red</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin">Yellow</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin" style="font-size: 12px">Blue Light</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin" style="font-size: 12px">Black Light</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin" style="font-size: 12px">Purple Light</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin" style="font-size: 12px">Green Light</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin" style="font-size: 12px">Red Light</p></li><li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0)" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7"></span></div></a><p class="text-center no-margin" style="font-size: 12px">Yellow Light</p></li></ul></div></div>
       <!-- /.tab-pane -->
       <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+     
       <!-- /.tab-pane -->
       <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
+    
       <!-- /.tab-pane -->
     </div>
   </aside>
@@ -347,5 +186,4 @@ function myFunction() {
 <script src="<?php echo base_url('assets/dist/js/adminlte.min.js'); ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
-</body>
-</html>
+

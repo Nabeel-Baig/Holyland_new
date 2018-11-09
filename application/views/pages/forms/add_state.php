@@ -35,7 +35,7 @@
         <div class="box-body">
           <h4>State/ Province</h4>
       <div class="col-md-6">
-            <form action="<?php echo base_url('state'); ?>" method = "post">
+            <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('state'); ?>" method = "post">
           <div class="form-group">
           <?php echo form_label('ID'); ?>
                   <input type="email" class="form-control" placeholder="ID Auto Generate" disabled>
@@ -61,7 +61,7 @@
               </div>
       
            <div class="form-group" style="margin-top: 0%">
-           <?php echo form_label('State/Province Short Name'); ?><?php echo form_error('state_sht_name'); ?> <br />
+           <?php echo form_label('State/Province Short Name'); ?>
                 <input type="text" id="state_sht_name" name="state_sht_name" class="form-control" placeholder="State/Province Short Name">
               </div>
         </div>
@@ -69,7 +69,7 @@
         <div class="col-md-6">
           <div class="form-group" style="position: relative;left: 34px;top: -20px;right: 0px;bottom: 0px;">
 
-            <label class="" for="inactive_flag" style="    font-weight: 400; margin-top: 5%"><?php echo form_error('inactive_flag'); ?> <br />
+            <label class="" for="inactive_flag" style="    font-weight: 400; margin-top: 5%">
               <input type="radio" name="inactive_flag" value="0" class="checkbox1">
               Active
             </label>
@@ -87,7 +87,7 @@
      
       <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div> 
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div> 
          <div class="col-md-4"></div>
         <?php echo form_close(); ?><br/>
           
@@ -96,8 +96,21 @@
         </div>
         </form>
         <script>
-function myFunction() {
-    alert("Data Inserted successfully");
+function validateForm() {
+    var x = document.forms["myForm"]["country"].value;
+    var y = document.forms["myForm"]["state_name"].value;
+    if (x == "") {
+        alert("Country Name must be filled out");
+        return false;
+    }
+    if (y == "") {
+        alert("State Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
 }
 </script>
 

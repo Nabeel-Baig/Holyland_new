@@ -17,21 +17,16 @@ class season_model extends CI_Model{
         public function showAllseason(){
 
      define("TABLE_ONE", 't1`.`');
-     define("TABLE_TWO", 't2`.`');
-     define("TABLE_THREE", 't3`.`');
 
      define("ALIAS_ONE", 't1');
-     define("ALIAS_TWO", 't2');
-     define("ALIAS_THREE", 't3');
 
-    $this->load->model('term_model');
 
     // Array of database columns which should be read and sent back to DataTables. Use a space where
     // you want to insert a non-database field (for example a counter or static image)
-    $aColumns = array( TABLE_ONE . 'season_id', TABLE_ONE . 'seeson_name', TABLE_ONE . 'term_cond_id', TABLE_ONE . 'term_cond_det_id',  TABLE_ONE . 'gor_from_date', TABLE_ONE . 'gor_to_date', TABLE_ONE . 'hij_from_date', TABLE_ONE . 'hij_to_date', TABLE_TWO . 'term_cond_desc', TABLE_THREE . 'term_cond_det_desc');
+    $aColumns = array( TABLE_ONE . 'season_id', TABLE_ONE . 'seeson_name',  TABLE_ONE . 'gor_from_date', TABLE_ONE . 'gor_to_date', TABLE_ONE . 'hij_from_date', TABLE_ONE . 'hij_to_date');
 
     //write column name only which has TBALE_ONE const with it.
-     $bColumns = array( TABLE_ONE . 'season_id', TABLE_ONE . 'seeson_name', TABLE_ONE . 'gor_from_date', TABLE_ONE . 'gor_to_date', TABLE_ONE . 'hij_from_date', TABLE_ONE . 'hij_to_date', TABLE_ONE . 'term_cond_id', TABLE_ONE . 'term_cond_det_id');
+     $bColumns = array( TABLE_ONE . 'season_id', TABLE_ONE . 'seeson_name', TABLE_ONE . 'gor_from_date', TABLE_ONE . 'gor_to_date', TABLE_ONE . 'hij_from_date', TABLE_ONE . 'hij_to_date');
     // Indexed column (used for fast and accurate table cardinality)
     $sIndexColumn = $aColumns[0];
     // DB table to use
@@ -92,8 +87,7 @@ class season_model extends CI_Model{
     $sQuery = "
         SELECT SQL_CALC_FOUND_ROWS `".str_replace(" , ", " ", implode("`, `", $aColumns))."`
         FROM $sTable ".ALIAS_ONE." 
-        JOIN ".$this->db->dbprefix('terms_condition')." ".ALIAS_TWO." ON ".ALIAS_TWO.".term_cond_id = ".ALIAS_ONE.".term_cond_id
-        JOIN ".$this->db->dbprefix('terms_condition_detail')." ".ALIAS_THREE." ON ".ALIAS_THREE.".term_cond_det_id = ".ALIAS_ONE.".term_cond_det_id
+     
         $sWhere
         $sOrder
         $sLimit";
@@ -139,12 +133,6 @@ class season_model extends CI_Model{
                 // General output
                 $row[] = $counter++;
                  
-            }elseif ($bColumns[$i] == 'term_cond_id') {
-                $term = $this->term_model->gettermBytermId($aRow[$bColumns[$i]]);
-                $row[] = $term->term_cond_desc;
-            }elseif ($bColumns[$i] == 'term_cond_det_id') {
-                $detail = $this->term_model->getdetailBydetailId($aRow[$bColumns[$i]]);
-                $row[] = $detail->term_cond_det_desc;
             }  else if ($bColumns[$i] != ' ') {
                 // General output
                 $row[] = $aRow[$bColumns[$i]];

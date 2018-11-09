@@ -305,7 +305,71 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Edit Cancellation Request</h4>
       </div>
-      <div class="modal-body">
+
+ <div class="modal-body">
+         <form id="myForm" action="" method="post" class="form-horizontal">        
+        <section class="content">
+          <div class="box" style="background: #c1c1c1;">
+             <div class="box-body">
+          <div class="row">
+           
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <!-- /.box-header -->
+              <!-- form start -->
+            
+                <div class="box-body">
+                  <input type="hidden" name="can_reasons_id" value="0">
+                  <div class="form-group">
+                    <label>Reason Name</label>
+                  <input type="text" name="reason_name" class="form-control">
+                  </div>
+                  
+
+
+
+
+                </div>
+                <!-- /.box-body -->
+
+                <!-- <div class="box-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div> -->
+
+
+                <!-- /.box -->
+
+
+            </div>
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <!-- /.box-header -->
+              <!-- form start -->
+
+              <div class="form-group" style="margin-top: 4%">
+                <label>Note</label>
+                  <textarea class="form-control" name="note" style="width: 95%"></textarea>
+              </div>
+
+              <!-- /.box -->
+
+
+            </div>
+
+
+          </div>
+   
+          <br>
+          
+
+          </form>
+</div>
+
+ </section>
+      </div>
+
+      <!-- <div class="modal-body">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="can_reasons_id" value="0">
             <div class="form-group">
@@ -322,7 +386,7 @@
             </div>
               
           </form>
-      </div>
+      </div> -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
@@ -366,7 +430,7 @@
       var data = $('#myForm').serialize();
       //validate form
       var reason_name = $('input[name=reason_name]');
-      var note = $('input[name=note]');
+      var note = $('textarea[name=note]');
       var result = '';
       if(reason_name.val()==''){
         reason_name.parent().parent().addClass('has-error');
@@ -427,7 +491,7 @@
         success: function(data){
           $('input[name=reason_name]').val(data.reason_name);
           $('input[name=can_reasons_id]').val(data.can_reasons_id);
-          $('input[name=note]').val(data.note);
+          $('textarea[name=note]').val(data.note);
           /*if(data.inactive_flag == 1){
             $('.inactive').prop('checked', true);
             $('.active').prop('checked', false);

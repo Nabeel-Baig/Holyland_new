@@ -39,7 +39,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="<?php echo base_url('city'); ?>" method = "post" role="form">
+            <form name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('city'); ?>" method = "post" role="form">
               <div class="box-body">
                 <div class="form-group">
                     <?php echo form_label('ID'); ?>
@@ -49,12 +49,9 @@
 
                 <div class="form-group">
                    <?php echo form_label('State Name'); ?><?php echo form_error('state'); ?> <br />
-          <select list="hosting-plan" id="state" name="state" disabled="" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                  <option>Select State</option>
-                  <?php  foreach ($countries as $country){ ?>
-                    <option value="<?= $country->state_id ?>"><?= $country->state_name ?></option>
-                  <?php } ?>
-                </select>
+          <select name="state" id="state" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
+                    <option value="">Select State</option>
+                  </select>
                 </div>
                 <br>
                 <div class="form-group">
@@ -87,7 +84,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <div class="form-group">
-              <?php echo form_label('Country Name'); ?><?php echo form_error('country_name'); ?> <br />
+              <?php echo form_label('Country Name'); ?><?php echo form_error('country'); ?> <br />
                     <select list="hosting-plan" id="country" name="country" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
                   <option>Select Country</option>
                   <?php  foreach ($countries as $country) { ?>
@@ -125,7 +122,7 @@
       </div>
 <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block" onclick="myFunction()"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button form="myForm" id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -142,8 +139,26 @@
 </form>
 
         <script>
-function myFunction() {
-    alert("Data Inserted successfully");
+function validateForm() {
+    var x = document.forms["myForm"]["country"].value;
+    var y = document.forms["myForm"]["state"].value;
+    var z = document.forms["myForm"]["city_name"].value;
+    if (x == "") {
+        alert("Country Name must be filled out");
+        return false;
+    }
+   if (y == "") {
+        alert("State Name must be filled out");
+        return false;
+    }
+     if (z == "") {
+        alert("City Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
 }
 </script>
 
@@ -369,30 +384,27 @@ function myFunction() {
 
  <script type="text/javascript">
     $(document).ready(function(){
-      $('#country').on('change',function(){
-        var country_id = $(this).val();
-        if(country_id == '')
-        {
-          $('#state').prop('disabled',true);
-        }
-        else
-        {
-          $('#state').prop('disabled',false);
-        
-        $.ajax({
-            url:"<?php echo base_url() ?>city/get_state",
-            type: "POST",
-            data: {'country_id' : country_id},
-            dataType: 'json',
-            success: function(data){
-              $('#state').html(data);
-            },
-            error: function(){
-              alert ('Error occur..!!');
-            }
-        });
-      }
-      });
+      $('#country').change(function(){
+  var country_id = $('#country').val();
+  if(country_id != '')
+  {
+   $.ajax({
+    url:"<?php echo base_url(); ?>client/fetch_state",
+    method:"POST",
+    data:{country_id:country_id},
+    success:function(data)
+    {
+     $('#state').html(data);
+     $('#city').html('<option value="">Select City</option>');
+    }
+   });
+  }
+  else
+  {
+   $('#state').html('<option value="">Select State</option>');
+   $('#city').html('<option value="">Select City</option>');
+  }
+ });
     });
  </script>
 

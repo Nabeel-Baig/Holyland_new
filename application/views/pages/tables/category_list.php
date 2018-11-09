@@ -305,7 +305,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Edit category</h4>
       </div>
-      <div class="modal-body">
+      <!-- <div class="modal-body">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="category_id" value="0">
             <div class="form-group">
@@ -326,7 +326,64 @@
                    </div>
            
           </form>
-      </div>
+      </div> -->
+
+      <section class="content">
+          <div class="box" style="background: #c1c1c1;">
+      <div class="modal-body">
+         <form id="myForm" action="" method="post" class="form-horizontal">        
+        
+          
+             <div class="box-body">
+          <div class="row">
+          
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <!-- /.box-header -->
+              <!-- form start -->
+            
+                <div class="box-body">
+                  <input type="hidden" name="category_id" value="0">
+                  <div class="form-group">
+                    <label>Category Name</label>
+                  <input type="text" name="category_desc" class="form-control">
+                  </div>
+                  
+                </div>
+              
+
+
+            </div>
+            <div class="col-md-6">
+        
+              <div class="form-group" style="margin-top: 15%">
+
+                <label for="inactive_flag" class="" style="    font-weight: 400; margin-left: 3%">
+                  <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+                  Active
+                </label>
+                <label for="inactive_flag" style="    font-weight: 400;    margin-left: 7%;">
+                  <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">                  Inactive
+                </label>
+              </div>
+
+       
+
+            </div>
+
+
+          </div>
+        
+         
+          <br>
+          
+
+          </form>
+</div>
+</div>
+        </section>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>

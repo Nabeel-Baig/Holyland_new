@@ -13,12 +13,40 @@ function state_insert($state){
        
     }
 
-// this function shows the drop down menu of Country with reference to state in Add City
+// this function shows the drop down menu of Country with reference to state in Add Client
+    function fetch_state($country_id)
+ {
+  $this->db->where('country_id', $country_id);
+  $this->db->order_by('state_name', 'ASC');
+  $this->db->where('inactive_flag', ACTIVE);
+  $query = $this->db->get('00000_mst_state');
+  $output = '<option value="">Select State</option>';
+  foreach($query->result() as $row)
+  {
+   $output .= '<option value="'.$row->state_id.'">'.$row->state_name.'</option>';
+  }
+  return $output;
+ }
+
+/*// this function shows the drop down menu of Country with reference to state in Add City
     public function get_state($country_id)
     {
+        $this->db->order_by("state_name", "ASC");
+        $this->db->where("inactive_flag", ACTIVE);
         $query = $this->db->get_where('00000_mst_state', array('country_id' => $country_id ));
+
         return $query->result();
-    }
+    }*/
+
+// This function calls in Client As Show state Details detail in Client model
+             function getstateBystateId($state_id){
+                $this->db->select('state_name');
+                $this->db->from('00000_mst_state');
+                $this->db->where('state_id', $state_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
 
 
 /*
@@ -47,17 +75,6 @@ $this->db->delete('00000_mst_state');
     }
 
 
-// This table shows the list of States in City Table
-             function getStateBySateId($state_id){
-                $this->db->select('state_name');
-                $this->db->from('00000_mst_state');
-                $this->db->where('state_id', $state_id);
-                $query = $this->db->get();
-                $result = $query->row();
-                return $result;
-            }
-
-
             /*// Function To Fetch Selected State Record
             function show_state_id($data){
             $this->db->select('*');
@@ -80,11 +97,21 @@ $this->db->delete('00000_mst_state');
 
 // for Country Update Modal
 
-    public function showAllstate(){
-        $this->load->model('country_model');
+   public function showAllstate(){
+
+     define("TABLE_ONE", 't1`.`');
+     define("TABLE_TWO", 't2`.`');
+
+     define("ALIAS_ONE", 't1');
+     define("ALIAS_TWO", 't2');
+
+
     // Array of database columns which should be read and sent back to DataTables. Use a space where
     // you want to insert a non-database field (for example a counter or static image)
-    $aColumns = array( 'state_id', 'country_id', 'state_name', 'state_sht_name', 'inactive_flag');
+    $aColumns = array( TABLE_ONE . 'state_id', TABLE_ONE . 'country_id', TABLE_ONE . 'state_name', TABLE_ONE . 'state_sht_name', TABLE_ONE . 'inactive_flag', TABLE_TWO . 'country_name');
+
+    //write column name only which has TBALE_ONE const with it.
+     $bColumns = array( TABLE_ONE . 'state_id', TABLE_ONE . 'country_id', TABLE_ONE . 'state_name', TABLE_ONE . 'state_sht_name', TABLE_ONE . 'inactive_flag');
     // Indexed column (used for fast and accurate table cardinality)
     $sIndexColumn = $aColumns[0];
     // DB table to use
@@ -144,7 +171,8 @@ $this->db->delete('00000_mst_state');
     // SQL queries
     $sQuery = "
         SELECT SQL_CALC_FOUND_ROWS `".str_replace(" , ", " ", implode("`, `", $aColumns))."`
-        FROM $sTable
+        FROM $sTable ".ALIAS_ONE." 
+        JOIN ".$this->db->dbprefix('country')." ".ALIAS_TWO." ON ".ALIAS_TWO.".country_id = ".ALIAS_ONE.".country_id
         $sWhere
         $sOrder
         $sLimit";
@@ -158,7 +186,12 @@ $this->db->delete('00000_mst_state');
     $iFilteredTotal = $tempFilteredTotal[0];
       
     // Total data set length
-    $sQuery = "SELECT COUNT(`".$sIndexColumn."`) FROM $sTable";
+    $colNam = explode(".", "`".$sIndexColumn."`");
+    if(count($colNam) > 0)
+        $tem_sIndexColumn = $colNam[1];
+    else
+        $tem_sIndexColumn = "`".$tem_sIndexColumn."`";
+    $sQuery = "SELECT COUNT(".$tem_sIndexColumn.") FROM $sTable";
     $rResultTotal = $this->db->query($sQuery);
     $aResultTotal = $rResultTotal->result_array();
     $tempTotal = array_values($aResultTotal[0]);
@@ -174,20 +207,23 @@ $this->db->delete('00000_mst_state');
 
     foreach ($rResult->result_array() as $aRow) {
         $row = array();
-        for ($i=0; $i<count($aColumns); $i++) {
-            $dbID = $aRow[$aColumns[0]];
-            if ($aColumns[$i] == "inactive_flag") {
-                $row[] = $aRow[$aColumns[$i]] == 0 ? 'Active' : 'Inactive';
-            }else if ($aColumns[$i] == 'state_id') {
+        $re = '/^.*`.`/m';
+        for ($i=0; $i<count($bColumns); $i++) {
+            $bColumns[$i] = preg_replace($re, "", $bColumns[$i]);
+
+            $dbID = $aRow[$bColumns[0]];
+            if ($bColumns[$i] == "inactive_flag") {
+                $row[] = $aRow[$bColumns[$i]] == 0 ? 'Active' : 'Inactive';
+            }else if ($bColumns[$i] == 'state_id') {
                 // General output
                 $row[] = $counter++;
                  
-            }elseif ($aColumns[$i] == 'country_id') {
-                $country = $this->country_model->getCountryByCountryId($aRow[$aColumns[$i]]);
+            }elseif ($bColumns[$i] == 'country_id') {
+                $country = $this->country_model->getcountryBycountryId($aRow[$bColumns[$i]]);
                 $row[] = $country->country_name;
-            } elseif ($aColumns[$i] != ' ') {
+            } else if ($bColumns[$i] != ' ') {
                 // General output
-                $row[] = $aRow[$aColumns[$i]];
+                $row[] = $aRow[$bColumns[$i]];
                  
             }
             // Formatted output

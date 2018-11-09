@@ -306,7 +306,74 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Modal title</h4>
       </div>
+
+      <section class="content">
+          <div class="box" style="background: #c1c1c1;">
       <div class="modal-body">
+         <form id="myForm" action="" method="post" class="form-horizontal">        
+        
+          
+             <div class="box-body">
+          <div class="row">
+          
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <!-- /.box-header -->
+              <!-- form start -->
+            
+                <div class="box-body">
+                  <input type="hidden" name="travel_type_id" value="0">
+                  <div class="form-group">
+                    <label>Travel Type</label>
+                  <input type="text" name="travel_type_desc" class="form-control">
+                  </div>
+                  
+                </div>
+              
+
+
+            </div>
+            <div class="col-md-6">
+        
+
+              <div class="form-group" style="margin-top: 4%">
+                <label>Note</label>
+                <textarea class="form-control" name="travel_type_sht_desc"></textarea>
+              </div>
+
+              <!-- /.box -->
+
+
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" style="">
+
+                <label for="inactive_flag" class="" style="    font-weight: 400; margin-left: 3%">
+                  <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+                  Active
+                </label>
+                <label for="inactive_flag" style="    font-weight: 400;    margin-left: 7%;">
+                  <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">                  Inactive
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+          <br>
+          
+
+          </form>
+</div>
+</div>
+        </section>
+
+
+      <!-- <div class="modal-body">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="travel_type_id" value="0">
             <div class="form-group">
@@ -332,7 +399,7 @@
                   </div>
                    </div>
           </form>
-      </div>
+      </div> -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
@@ -376,7 +443,7 @@
       var data = $('#myForm').serialize();
       //validate form
       var travel_type_desc = $('input[name=travel_type_desc]');
-      var address = $('input[name=travel_type_sht_desc]');
+      var address = $('textarea[name=travel_type_sht_desc]');
       var result = '';
       if(travel_type_desc.val()==''){
         travel_type_desc.parent().parent().addClass('has-error');
@@ -436,7 +503,7 @@
         dataType: 'json',
         success: function(data){
           $('input[name=travel_type_desc]').val(data.travel_type_desc);
-          $('input[name=travel_type_sht_desc]').val(data.travel_type_sht_desc);
+          $('textarea[name=travel_type_sht_desc]').val(data.travel_type_sht_desc);
           $('input[name=travel_type_id]').val(data.travel_type_id);
           if(data.inactive_flag == 1){
             $('.inactive').prop('checked', true);

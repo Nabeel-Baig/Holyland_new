@@ -12,6 +12,15 @@ class room_model extends CI_Model{
        $this->db->insert('00000_mst_room_types', $data);   
     }
 
+    // Fetch room in Hotel Table
+    function fetch_room()
+ {          
+        $this->db->order_by("room_type_name", "ASC");
+        $this->db->where('inactive_flag', ACTIVE);
+        $result = $this->db->get("00000_mst_room_types");
+        return $result->result();
+ }
+
 
     public function showAllroom(){
    /* $this->db->order_by('room_id', 'desc');

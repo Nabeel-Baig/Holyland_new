@@ -317,54 +317,37 @@
        <section class="content">
       <div class="box" style="background: #c1c1c1;">
       <div class="modal-body">
+        <form role="form" id="myForm" action="" method="post" class="form-horizontal">
         <section class="content">
           <div class="row">
-            <br>
-            <br>
-            <br>
-            <!-- left column -->
+            
             <div class="col-md-6">
-              <!-- general form elements -->
-              <!-- /.box-header -->
-              <!-- form start -->
-              <form role="form" id="myForm" action="" method="post" class="form-horizontal">
+
+              
                 <div class="box-body">
                   <div class="form-group">
                     <input type="hidden" name="room_id" class="form-control" value="0" placeholder="ID Auto Generate">
                   </div>
                   <div class="form-group">
-                    <label>room Name</label>
-                    <input type="text" class="form-control" placeholder="Name" name="room_type_name" style="width: 100%;padding: 9px;border-radius: 1px;">
+                    <label>Room Name</label>
+                    <input type="text" class="form-control" placeholder="Name" name="room_type_name" id="room_type_name" style="width: 100%;padding: 9px;border-radius: 1px;">
                   </div>
 
                   <div class="form-group">
                     <label>No Of Person</label>
                     <input type="number" class="form-control" placeholder="Number Of Person" name="no_of_persons">
                   </div>
-                  <!-- <div class="form-group">
-                    <input type="number" class="form-control" placeholder="No Of Bed">
-                  </div> -->
 
                 </div>
-                <!-- /.box-body -->
-
-                <!-- <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div> -->
-             
-
-              <!-- /.box -->
-
-
             </div>
             <div class="col-md-6">
           
                 <div class="form-group" style="margin-top: 10%;">
                   <label>Note</label>
-                  <input type="text" class="form-control" rows="5" name="note" placeholder="Note"></input>
+                  <textarea class="form-control" rows="" name="note"></textarea>
                 </div>
 
-              <div class="form-group">
+              <div class="form-group" style="margin-top: 10%">
           <label for="inactive_flag" class="" style="    font-weight: 400;margin-left: 6%;">
             <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
             Active
@@ -379,33 +362,18 @@
               </form>
 
               <!-- /.box -->
-
-
             </div>
 
-
           </div>
 
-
-          <br>
-          <br>
-          <br>
-          <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4  center-block"> <button id="btnSave" class="btn btn-primary center-block" style="width: 50%;border-radius: 40px;">Submit</button> </div>
-            <div class="col-md-4"></div>
-          </div>
-
-          </form>
-
-        </section>
-      </div>
-    </div>
-  </section>
+       </section>
+   
+ </div>
+</div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -505,8 +473,8 @@
         <button type="button" id="btnDelete" class="btn btn-danger">Delete</button>
       </div>
     </div><!-- /.modal-content
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+  </div>
+</div> --><!-- /.modal -->
 
 <script>
   $(function(){
@@ -524,10 +492,10 @@
       var url = $('#myForm').attr('action');
       var data = $('#myForm').serialize();
       //validate form
-      var room_type_name = $('input[name=room_type_name]');
+      /*var room_type_name = $('input[name=room_type_name]');
       //var arabic_name = $('input[name=arabic_name]');
       var no_of_persons = $('input[name=no_of_persons]');
-      var note = $('input[name=note]');
+      var note = $('textarea[name=note]');
       var result = '';
       if(room_type_name.val()==''){
         room_type_name.parent().parent().addClass('has-error');
@@ -546,8 +514,8 @@
       }else{
         note.parent().parent().removeClass('has-error');
         result +='3';
-      }
-      if(result=='123'){
+      }*/
+      
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -574,7 +542,7 @@
             alert('Could not add data');
           }
         });
-      }
+      
     });
 
     //edit
@@ -594,7 +562,7 @@
           $('input[name=room_type_name]').val(data.room_type_name);
           //$('input[name=arabic_name]').val(data.arabic_name);
           $('input[name=no_of_persons]').val(data.no_of_persons);
-          $('input[name=note]').val(data.note);
+          $('textarea[name=note]').val(data.note);
           $('input[name=room_id]').val(data.room_id);
           if(data.inactive_flag == 1){
             $('.inactive').prop('checked', true);

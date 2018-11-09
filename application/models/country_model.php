@@ -12,14 +12,22 @@ class country_model extends CI_Model{
 
    // Function To Fetch All Country Record
       
-public function getCountryByCountryId($country_id)
+/*public function getCountryByCountryId($country_id)
 {
     $sql="SELECT country_name FROM 00000_mst_country WHERE country_id = " . $country_id;
     //$this->db->insert('00000_mst_city', $app_id);
     $result=$this->db->query($sql);
     return $result->row();
-}
+}*/
 
+// This Function Fetch The Country In Client Table as Drop Down
+function fetch_country()
+ {
+  $this->db->order_by("country_name", "ASC");
+  $this->db->where("inactive_flag", ACTIVE);
+  $query = $this->db->get("00000_mst_country");
+  return $query->result();
+ }
 
 
 // Fetching Country Name from Countries in ADD City As a drop down and inherit in States List
@@ -42,14 +50,14 @@ public function getCountryByCountryId($country_id)
 
 
 
-
+/*
 // Fetch in State as Country List
     public function getCountries_list()
     {
         $result=$this->db->where('inactive_flag', ACTIVE)->get("00000_mst_country");
         return $result->result();
     }
-
+*/
 /*// Fetch in State as Country List
     public function getCountries_list()
     {
@@ -58,6 +66,16 @@ public function getCountryByCountryId($country_id)
         $result=$this->db->query($sql);
         return $result->result();
     }*/
+
+// This function calls in Client As Show Country Details detail in Client model
+             function getcountryBycountryId($country_id){
+                $this->db->select('country_name');
+                $this->db->from('00000_mst_country');
+                $this->db->where('country_id', $country_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
 
 
 // for Country Update Modal

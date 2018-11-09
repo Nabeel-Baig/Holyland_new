@@ -244,56 +244,62 @@
     <section class="content">
       <div class="row">
         <div class="box" style="width: 80%;margin-left: 10%;background: #c1c1c1;">
+          <form name="myForm" role="form" id="myform" action="<?php echo base_url('hotel'); ?>" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
           <div class="box-body">
+            
         <!-- left column -->
         <div class="col-md-4">
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
               <div class="box-body">
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="ID Auto Generate" disabled>
+                  <label>ID</label>
+                  <input type="text" class="form-control" placeholder="ID Auto Generate" disabled>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Name" id="exampleInputPassword1">
-                </div>
-                <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <input list="browsers" placeholder="Select Category" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
-                </div>
-                <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <input list="browsers" placeholder="Select City" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers5">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
-
-                  </form>
+                  <label>Hotel Name</label><?php echo form_error('hotel_name'); ?>
+                  <input type="text" required="hotel_name" class="form-control" placeholder="Name" name="hotel_name" id="hotel_name" tabindex="1">
                 </div>
 
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Account Title" id="exampleInputEmail1">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Allotment Account Title" id="exampleInputEmail1">
+                  <label>Country</label>
+                    <select name="country" id="country" required="country" style="width: 100%;border: 1px solid #d4d4d4;padding: 6px;" tabindex="4">
+                      <option value="">Select Country</option>
+                      <?php foreach ($country as $country) { ?>
+                        <option value="<?= $country->country_id ?>"><?= $country->country_name ?></option>
+                      <?php } ?>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                  <input type="number" class="form-control" placeholder="VAT No" id="exampleInputEmail1">
+                  <label>Category</label>
+                   <select name="category" id="category" required="category" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="7">
+                     <option value="">Select Category</option>
+                       <?php foreach ($categories as $category) { ?>
+                        <option><?= $category->category_desc ?></option>
+                      <?php } ?>
+                   </select>
+
+                </div>
+
+                  
+                
+                 <div class="form-group" style="margin-top: 0%;">
+                  <label>Account Number</label>
+                    <input type="number" placeholder="Account Number" name="gl_ac_no" id="gl_ac_no" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="10">
+                </div>
+                
+                 <div class="form-group">
+                  <label>Allotment Account Number</label>
+                    <input type="number" placeholder="Allotment Account Number" name="alot_gl_ac_no" id="alot_gl_ac_no" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="12">
+                </div>
+               
+            
+
+                <div class="form-group">
+                  <label>VAT No</label>
+                  <input type="number" class="form-control" placeholder="VAT No" name="vat_no" id="vat_no" tabindex="14">
                 </div>
 
 
@@ -316,7 +322,6 @@
               <!-- <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div> -->
-            </form>
           
           <!-- /.box -->
 
@@ -327,73 +332,46 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
               <div class="box-body">
                  
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Hotel Address" id="exampleInputEmail1">
+                  <label>Hotel Address</label>
+                  <input type="text" class="form-control" placeholder="Hotel Address" name="address" id="address" tabindex="2">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Website" id="exampleInputEmail1">
+                  <label>Website</label>
+                  <input type="text" class="form-control" placeholder="Website" name="hot_website" id="hot_website" tabindex="5">
                 </div>
-                <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <input list="browsers" placeholder="Select Country" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers4">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
 
-                  </form>
+                <div class="form-group" style="margin-top: -0%;">
+                  <label>State</label>
+                   <select name="state" id="state" required="state" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="8">
+                    <option value="">Select State</option>
+                  </select>
                 </div>
-                <div class="form-group">
-
-                  <table>
-                    <tr>
-                      <div class="field_wrapper">
-                        <div>
-                          <input type="text" class="form-control" placeholder="Phone" style="width: 55%" name="phone[]" data-role="phone" value=""/>
-                          <a href="javascript:void(0);" class="add_button " title="Add field" style="position: relative;bottom: 31px;left: 163px;"><img src="<?php echo base_url('assets/images/add-icon.png'); ?>"/></a>
-                        </div>
-                      </div>
-                    </tr>
-                  </table>
-
-
-
+              
+                    <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" placeholder="Email" name="hot_email_id" id="hot_email_id" tabindex="11">
                 </div>
-                <div class="form-group" style="margin-top: -10%;">
-                  <form action="/action_page.php" method="get">
-                    <input list="browsers" placeholder="Account Number" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers1">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
 
-                  </form>
+                  
+
+
+
+                 <div class="form-group">
+                  <label>Account Title</label>
+                  <input type="text" class="form-control" placeholder="Account Title" id="exampleInputEmail1" tabindex="13">
                 </div>
-                <div class="form-group">
-                  <form action="/action_page.php" method="get">
-                    <input list="browsers" placeholder="Allotment Account Number" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers2">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
 
-                  </form>
+                  <div class="form-group">
+                  <label>Allotment Account Title</label>
+                  <input type="text" class="form-control" placeholder="Allotment Account Title" id="exampleInputEmail1" tabindex="15">
                 </div>
 
                 <div class="form-group">
-                  <input type="number" class="form-control" placeholder="GAZT No" id="exampleInputEmail1">
+                  <label>GAZT No</label>
+                  <input type="number" class="form-control" placeholder="GAZT No" name="gazt_no" id="gazt_no" tabindex="17">
                 </div>
 
 
@@ -423,7 +401,6 @@
               <!-- <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div> -->
-            </form>
           
           <!-- /.box -->
 
@@ -434,19 +411,16 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
               <div class="box-body">
-                <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email" id="exampleInputEmail1">
-                </div>
-
+           
                 <div class="form-group">
 
                   <table>
                     <tr>
                       <div class="field_wrapper">
                         <div>
-                          <input type="text" class="form-control" placeholder="Fax" style="width: 55%" name="fax[]" data-role="fax" value=""/>
+                          <label>Phone</label>
+                          <input type="text" required="phone" maxlength="11" minlength="10" minlength="10" class="form-control" placeholder="03333906233" style="width: 55%" name="phone[]" data-role="phone" value="" tabindex="3" />
                           <a href="javascript:void(0);" class="add_button " title="Add field" style="position: relative;bottom: 31px;left: 163px;"><img src="<?php echo base_url('assets/images/add-icon.png'); ?>"/></a>
                         </div>
                       </div>
@@ -456,54 +430,82 @@
 
 
                 </div>
-                <div class="form-group" style="margin-top: -11%;">
-                  <form action="/action_page.php" method="get">
-                    <input list="browsers" placeholder="Select State/Province" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                    <datalist id="browsers3">
-                      <option value="Internet Explorer">
-                      <option value="Firefox">
-                      <option value="Chrome">
-                      <option value="Opera">
-                      <option value="Safari">
-                    </datalist>
 
-                  </form>
+                <div class="form-group" style="margin-top: -10%">
+
+                  <table>
+                    <tr>
+                      <div class="field_wrapper">
+                        <div>
+                          <label>Fax</label>
+                          <input type="text" class="form-control" maxlength="11" minlength="10" minlength="10" placeholder="03333906233" style="width: 55%" name="fax[]" data-role="fax" value="" tabindex="6" />
+                          <a href="javascript:void(0);" class="add_button " title="Add field" style="position: relative;bottom: 31px;left: 163px;"><img src="<?php echo base_url('assets/images/add-icon.png'); ?>"/></a>
+                        </div>
+                      </div>
+                    </tr>
+                  </table>
+
+
+
                 </div>
+              
 
-
+              <div class="form-group" style="margin-top: -10%">
+                  <label>City</label>
+                    <select name="city" id="city" required="city" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;" tabindex="9">
+                      <option value="">Select City</option>
+                    </select>
+                </div>
 
 
                 <div class="form-group">
                   
                   <p style="position: relative;top: 15px;">
-                  <input type="checkbox" name="checkbox1" class="checkbox1">
+                    <label for="web_appear_flag">
+                  <input type="checkbox" name="web_appear_flag" value="1" class="checkbox1">
                   Appear In Web
+                  </label>
                 </p>
                 </div>
                 <div class="form-group">
                   
                   <p style="position: relative;top: 20px;">
-                  <input type="checkbox" name="checkbox1" class="checkbox1">
+                    <label for="hot_avail_flag">
+                  <input type="checkbox" name="hot_avail_flag" value="1" class="checkbox1">
                   Appear in Hotel availability
+                  </label>
                 </p>
                 </div>
                 <div class="form-group">
                   
                   <p style="position: relative;top: 30px;">
-                  <input type="checkbox" name="checkbox1" class="checkbox1">
+                    <label for="vat_flag">
+                  <input type="checkbox" name="vat_flag" value="1" class="checkbox1">
                   NO VAT
+                  </label>
                 </p>
                 </div>
+
+                   <div class="form-group">
+                  
+                  <p style="position: relative;top: 30px;">
+                    <label for="gst_flag">
+                  <input type="checkbox" name="gst_flag" value="1" class="checkbox1">
+                  NO GST
+                  </label>
+                </p>
+                </div>
+
                 <div class="form-group" style="position: relative;top: 35px;">
 
-                  <label class="" style="    font-weight: 400;">
-                    <input type="checkbox" name="checkbox1" class="checkbox1">
+                  <label for="inactive_flag" class="" >
+                    <input type="checkbox" name="inactive_flag" value="1" class="checkbox1">
                     Suspended
                   </label>
-                  <label style="font-weight: 400;margin-left: 5%;">
+                 <!--  <label style="margin-left: 5%;">
                     <input type="checkbox" name="checkbox1" class="checkbox1">
-                    Block List
-                  </label>
+                    Black List
+                  </label> -->
                 </div>
 
                 <!-- <div class="form-group">
@@ -523,82 +525,59 @@
               <!-- <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div> -->
-            </form>
         </div>
       </div>
       
 
 
 
-      <div class="row" style="margin-top: 2%">
+      <div class="row">
         <div class="col-xs-12">
-          <div class="box-body">
-            <div class="col-md-3">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="ID Auto Generate" disabled>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <input type="text" class="form-control" placeholder="Description">
-            </div>
-            <div class="col-md-3">
-              <!-- <input type="file"> -->
-              <label class="btn btn-primary center-block" for="my-file-selector" style="border-radius: 30px;width: 40%;margin-bottom: 2%;margin-top: 2%;">
-                <input id="my-file-selector" type="file" multiple="multiple" style="display:none"
-                       onchange="$('#upload-file-info').html(
-            (this.files.length > 1) ? this.files.length + ' files' : this.files[0].name)">
-                Upload&hellip;
-              </label>
-              <span class='label label-info' id="upload-file-info" style="    margin-left: 30%;"></span>
-            </div>
-            <div class="col-md-3">
-              <button class="btn btn-primary btn-sm center-block" style="width: 50%;border-radius: 30px;margin-bottom: 2%;margin-top: 2%;">Add</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <br>
-        <div class="row">
-          <div class="col-xs-12">
           <div class="col-xs-12">
             <div class="box">
-               <div class="box-body">
-                <table id="example1" class="table table-responsive"  style="width:100%">
-                    <thead>
-                    <tr class="info">
-                        <th>ID</th>
-                        <th>Description</th>
-                        <th>File Name</th>
-                    </tr>
+              <table id="myTable" class=" table order-list"  style="width:100%">
+                <thead>
+                <tr class="info">
+                
+                <th>Description</th>
+                <th>File Name</th>
+                </tr>
 
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
+    <!--            <tr>
+           
+            <td class="col-sm-6">
+                <input type="text" required="file_description" class="form-control" name="file_description[]" placeholder="File Description"  />
+            </td>
+            <td class="col-sm-6">
+                <input type="file" required="file_name" name="file_name[]" placeholder="File Upload" class="form-control"/>
+            </td>
+            <td class="col-sm-2"><a class="deleteRow"></a>
+
+            </td>
+        </tr> -->
+                </tbody>
+            <tfoot>
                     <tr>
-                        <td>005</td>
-                        <td>123</td>
-                        <td>image</td>
+                        <td colspan="5" style="text-align: left;">
+                            <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
+                        </td>
                     </tr>
-
                     <tr>
-                        <td>005</td>
-                        <td>125</td>
-                        <td>image</td>
                     </tr>
-                    </tbody>
-
-                </table>
+                </tfoot>
+              </table>
             </div>
           </div>
         </div>
-        </div>
-      </div>
+    </div>
         <br><br>
 <div class="row" style="margin-bottom: 3%">
  <div class="col-xs-12">
    <div class="col-md-3">
 
-     <button class="accordion btn-primary">Contact Person
+     <button class="accordion btn-primary" type="button">Contact Person
        <div class="container" onclick="myFunction(this)" style="margin-left: 74%;margin-top: -9%;">
          <div class="bar1"></div>
          <div class="bar2"></div>
@@ -615,43 +594,45 @@
      <div class="panel">
        <br>
        <div class="form-group">
-         <input type="hidden" class="form-control" placeholder="S No" name="fpname" id="fpname" style="width: 100%;border-radius: 0px;padding: 9px;">
-       </div>
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="Name" name="contact_person_name[]" id="contact_person_name">
+                      </div>
+      
+                      <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" placeholder="Title" name="contact_person_title[]" id="contact_person_title">
+                      </div>
+      
+                      <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" maxlength="11" minlength="10" minlength="10" placeholder="03333906233" name="contact_person_phone[]" id="contact_person_phone">
+                      </div>
+      
+                    <div class="form-group">
+                      <label>Mobile</label>
+                        <input type="text" class="form-control" maxlength="11" minlength="10" minlength="10" placeholder="Mobile" name="contact_person_mobile[]" id="contact_person_mobile">
+                      </div>
+      
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="Email" name="contact_person_email[]" id="contact_person_email">
+                      </div>
+        <div class="form-group">
+          <label for="inactive_flag" class="" style="    font-weight: 400;margin-left: 6%;">
+            <input type="radio" name="contact_person_inactive_flag[]" id="contact_person_inactive_flag"  value="0" class="checkbox1">
+            Active
+          </label>
+          <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
+            <input type="radio" name="contact_person_inactive_flag[]" id="contact_person_inactive_flag" value="1" class="checkbox1">
+            Inactive
+          </label>
+        </div>
 
-       <div class="form-group">
-         <input type="text" class="form-control" placeholder="Name" name="lpname" id="lpname" style="width: 100%;border-radius: 0px;padding: 9px;">
-       </div>
 
-       <div class="form-group">
-         <input type="text" class="form-control" placeholder="Title" name="title" id="title" style="width: 100%;border-radius: 0px;padding: 9px;">
-       </div>
-
-
-
-       <div class="form-group">
-         <input type="text" class="form-control" placeholder="Mobile" name="mobile" id="mobile" style="width: 100%;border-radius: 0px;padding: 9px;">
-       </div>
-
-       <div class="form-group">
-         <input type="text" class="form-control" placeholder="Email" name="email" id="email" style="width: 100%;border-radius: 0px;padding: 9px;">
-       </div>
-
-<!-- <div class="form-group">
-         <input type="text" class="form-control" placeholder="Email" name="age" id="age" style="width: 100%;border-radius: 0px;padding: 9px;">
-       </div> -->
-       <!--<div class="form-group">-->
-       <!--<label class="" style="    font-weight: 400;margin-left: 6%;">-->
-       <!--<input type="checkbox" name="checkbox1" class="checkbox1">-->
-       <!--Active-->
-       <!--</label>-->
-       <!--<label style="    font-weight: 400;    margin-left: 10%;">-->
-       <!--<input type="checkbox" name="checkbox1" class="checkbox1">-->
-       <!--Inactive-->
-       <!--</label>-->
        <!--</div>-->
 
        <div class="form-group">
-         <button onclick="addHtmlTable();" type="text" class="btn btn-primary form-control center-block" style="width: 50%;border-radius: 40px;">Add</button>
+         <button type="button" class="btn btn-primary form-control center-block" id="addrows" value="Add Row" style="width: 50%;border-radius: 40px;">Add</button>
        </div>
 
        <script>
@@ -673,7 +654,7 @@
      </div>
    </div>
    <div class="col-md-3">
-     <button class="accordion1 btn-primary">Room Type
+     <button class="accordion1 btn-primary" type="button">Room Type
        <div class="container" onclick="myFunction(this)" style="margin-left: 74%;margin-top: -9%;">
          <div class="bar1"></div>
          <div class="bar2"></div>
@@ -682,36 +663,33 @@
      </button>
      <div class="panel1">
        <br>
-       <!-- <div class="form-group">
-         <input type="number" class="form-control" placeholder="S No" name="fname" id="fname">
-       </div> -->
+       
        <div class="form-group">
         <label>No Of Bed</label>
-         <input type="number" class="form-control" placeholder="No Of Bed" name="fname" id="fname">
+         <input type="number" class="form-control" placeholder="No Of Bed" name="room_type_nob[]" id="room_type_nob">
        </div>
-       <div class="form-group">
+       <!-- <div class="form-group">
         <label>No Of Person</label>
-         <input type="number" class="form-control" placeholder="No Of Person" name="lname" id="lname">
+         <input type="number" class="form-control" placeholder="No Of Person" name="room_type_nop[]" id="room_type_nop">
 
-       </div>
+       </div> -->
 
        <div class="form-group">
         <label>Room Type</label>
-         <select class="form-control" name="age" id="age">
-           <option>Room Type</option>
-           <option>option 2</option>
-           <option>option 3</option>
-           <option>option 4</option>
-           <option>option 5</option>
+         <select class="form-control" name="room_type_room[]" id="room_type_room">
+           <option value=""></option>
+           <?php foreach ($rooms as $room) {  ?>
+            <option value="<?= $room->room_id ?>"><?= $room->room_type_name ?></option>
+          <?php } ?>
          </select>
        </div>
        <div class="form-group" style="display: flex;">
          Appear in web
-         <input type="checkbox" class="checkbox" style="margin-left: 3%;">
+         <input type="checkbox" class="checkbox1" name="room_type_web_flag[]" id="room_type_web_flag" value="1" style="margin-left: 3%;">
        </div>
 
        <div class="form-group">
-         <button onclick="addHtmlTableRow();" type="text" class="btn btn-primary form-control center-block" style="width: 50%;border-radius: 40px;">Add</button>
+         <button type="button" class="btn btn-primary form-control center-block" id="addroom" value="Add Row" style="width: 50%;border-radius: 40px;">Add</button>
        </div>
 
        <script>
@@ -734,7 +712,7 @@
    </div>
 
    <div class="col-md-3">
-     <button class="accordion2 btn-primary">Meal Plan
+     <button class="accordion2 btn-primary" type="button">Meal Plan
        <div class="container" onclick="myFunction(this)" style="margin-left: 74%;margin-top: -9%;">
          <div class="bar1"></div>
          <div class="bar2"></div>
@@ -743,26 +721,23 @@
      </button>
      <div class="panel2">
        <br>
-       <div class="form-group">
-         <input type="text" class="form-control" placeholder="S No">
-       </div>
+       
 
        <div class="form-group">
-         <select class="form-control">
-           <option>Meal Plan</option>
-           <option>option 2</option>
-           <option>option 3</option>
-           <option>option 4</option>
-           <option>option 5</option>
+         <select class="form-control" name="meal_plan_meal[]" id="meal_plan_meal">
+           <option value=""></option>
+           <?php foreach ($meals as $meal) {  ?>
+            <option value="<?= $meal->meal_plan_id ?>"><?= $meal->meal_plan_desc ?></option>
+          <?php } ?>
          </select>
        </div>
        <div class="form-group" style="display: flex;">
          Appear in web
-         <input type="checkbox" class="checkbox" style="margin-left: 3%;">
+         <input type="checkbox" class="checkbox1" name="meal_plan_web_flag[]" id="meal_plan_web_flag" value="1" style="margin-left: 3%;">
        </div>
 
        <div class="form-group">
-         <button type="text" class="btn btn-primary form-control center-block" style="width: 50%;border-radius: 40px;">Add</button>
+         <button type="button" class="btn btn-primary form-control center-block" id="addmeal" value="Add Row" style="width: 50%;border-radius: 40px;">Add</button>
        </div>
 
        <script>
@@ -784,7 +759,7 @@
      </div>
    </div>
    <div class="col-md-3">
-     <button class="accordion3 btn-primary">View
+     <button class="accordion3 btn-primary" type="button">View
        <div class="container" onclick="myFunction(this)" style="margin-left: 74%;margin-top: -9%;">
          <div class="bar1"></div>
          <div class="bar2"></div>
@@ -793,26 +768,23 @@
      </button>
      <div class="panel3">
        <br>
-       <div class="form-group">
-         <input type="text" class="form-control" placeholder="S No">
-       </div>
+       
 
        <div class="form-group">
-         <select class="form-control">
-           <option>View</option>
-           <option>option 2</option>
-           <option>option 3</option>
-           <option>option 4</option>
-           <option>option 5</option>
+        <select class="form-control" name="view_name[]" id="view_name">
+           <option value=""></option>
+           <?php foreach ($views as $view) {  ?>
+            <option value="<?= $view->hot_view_id ?>"><?= $view->hot_view_desc ?></option>
+          <?php } ?>
          </select>
        </div>
        <div class="form-group" style="display: flex;">
          Appear in web
-         <input type="checkbox" class="checkbox" style="margin-left: 3%;">
+         <input type="checkbox" class="checkbox1" name="view_web_flag[]" id="view_web_flag" value="1" style="margin-left: 3%;">
        </div>
 
        <div class="form-group">
-         <button type="text" class="btn btn-primary form-control center-block" style="width: 50%;border-radius: 40px;">Add</button>
+         <button type="button" class="btn btn-primary form-control center-block" id="addview" value="Add Row" style="width: 50%;border-radius: 40px;">Add</button>
        </div>
 
        <script>
@@ -846,11 +818,10 @@
       </div> -->
       <!-- /.box-header -->
       <div class="box-body"  style="overflow-x: auto">
-        <table id="table1" class="table table-striped"  style="width:100%">
+        <table id="myTable" class=" table orders-lists" style="width:100%">
           <h3>Contact Person</h3>
           <thead>
           <tr class="info">
-            <th>S.No</th>
             <th>Name</th>
             <th>Tittle</th>
             <th>Phone No.</th>
@@ -862,25 +833,9 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td></td>
-            <td>Ahsan</td>
-            <td>Ali</td>
-            <td> 4</td>
-            <td>Pakistan</td>
-            <td>Karachi</td>
-            <td>Active</td>
-            <td>
-              <a onclick="editHtmlTbleSelectedRowp();" class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
+          
 
-              </a>
-
-              <a onclick="removeSelectedRowp();" class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
-
-              </a>
-            </td>
-
-          </tr>
+      
 
           </tbody>
 
@@ -894,177 +849,106 @@
 </div>
 
       <div class="row">
+          <div class="col-xs-12">
+          <div class="col-xs-12">
+            <div class="box">
+              <!-- <div class="box-header">
+                <h3 class="box-title">Data Table With Full Features</h3>
+              </div> -->
+              <!-- /.box-header -->
+              <div class="box-body"  style="overflow-x: auto">
+                <table id="myTableRoom" class=" table orders-listsroom" style="width:100%">
+          <h3>Room Type</h3>
+          <thead>
+          <tr class="info">
+            <th>Bed</th>
+            <th>Room Type</th>
+            <th>Status</th>
+            <th>Action</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          
+
+      
+
+          </tbody>
+
+        </table>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          </div>
+        </div>
+
+      <div class="row">
         <div class="col-xs-12">
-          <div class="col-md-4">
+          
+          <div class="col-md-6">
             <div class="box">
               <!-- <div class="box-header">
                 <h3 class="box-title">Data Table With Full Features</h3>
               </div> -->
               <!-- /.box-header -->
               <div class="box-body"  style="overflow-x: auto">
-                <table id="table" class="table table-striped"  style="width:100%">
-                  <h3>Room Type</h3>
-                  <thead>
-                  <tr class="info">
-                    <th>Bed</th>
-                    <th>Person</th>
-                    <th>Room Type</th>
-                    <th>Actions</th>              
-                        </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>5</td>
-                    <td>Ahsan</td>
-                    <td>West</td>
-                    <td>
-                      <a onclick="editHtmlTbleSelectedRow();" class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
+                <table id="myTable" class=" table orders-listsmp" style="width:100%">
+          <h3>Meal Plan</h3>
+          <thead>
+          <tr class="info">
+            <th>Meal Plan</th>
+            <th>Status</th>
+            <th>Action</th>
 
-                      </a>
+          </tr>
+          </thead>
+          <tbody>
+          
 
-                      <a onclick="removeSelectedRow();" class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
+      
 
-                      </a>
-                    </td>
-                  </tr>
+          </tbody>
 
-                  <tr>
-                    <td>3</td>
-                    <td>Ahsan</td>
-                    <td>East</td>
-                    <td>
-                      <a onclick="editHtmlTbleSelectedRow();" class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
-
-                      </a>
-
-                      <a onclick="removeSelectedRow();" class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
-
-                      </a>
-                    </td>
-
-
-                  </tr>
-                  </tbody>
-
-                </table>
+        </table>
               </div>
               <!-- /.box-body -->
             </div>
             <!-- /.box -->
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="box">
               <!-- <div class="box-header">
                 <h3 class="box-title">Data Table With Full Features</h3>
               </div> -->
               <!-- /.box-header -->
               <div class="box-body"  style="overflow-x: auto">
-                <table id="example1" class="table table-striped"  style="width:100%">
-                  <h3>View</h3>
-                  <thead>
-                  <tr class="info">
-                    <th>S.No</th>
-                    <th>View</th>
-                    <th>Action</th>
+                    <table id="myTable" class=" table orders-listsview" style="width:100%">
+          <h3>View</h3>
+          <thead>
+          <tr class="info">
+            <th>View</th>
+            <th>Status</th>
+            <th>Action</th>
 
+          </tr>
+          </thead>
+          <tbody>
+          
 
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>005</td>
-                    <td>Ahsan</td>
-                    <td>
-                      <a class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
+      
 
-                      </a>
+          </tbody>
 
-                      <a class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
-
-                      </a>
-                    </td>
-
-                  </tr>
-
-                  <tr>
-                    <td>005</td>
-                    <td>Ahsan</td>
-                    <td>
-                      <a class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
-
-                      </a>
-
-                      <a class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
-
-                      </a>
-                    </td>
-
-                  </tr>
-                  </tbody>
-
-                </table>
-              </div>
-              <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-          </div>
-          <div class="col-md-4">
-            <div class="box">
-              <!-- <div class="box-header">
-                <h3 class="box-title">Data Table With Full Features</h3>
-              </div> -->
-              <!-- /.box-header -->
-              <div class="box-body"  style="overflow-x: auto">
-                <table id="example1" class="table table-striped"  style="width:100%">
-                  <h3>Meal Plan</h3>
-                  <thead>
-                  <tr class="info">
-                    <th>S.No</th>
-                    <th>Meal Plan</th>
-                    <th>Action</th>
-
-
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>005</td>
-                    <td>Ahsan</td>
-
-                    <td>
-                      <a class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
-
-                      </a>
-
-                      <a class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
-
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>005</td>
-                    <td>Ahsan</td>
-
-                    <td>
-                      <a class="fa fa-pencil fa-lg" style="color: dodgerblue;position: relative;right:8px;">
-
-                      </a>
-
-                      <a class="fa fa-times fa-lg" style="color: red;position: relative;left:5px;">
-
-                      </a>
-                    </td>
-                  </tr>
-                  </tbody>
-
-                </table>
+        </table>
               </div>
               <!-- /.box-body -->
             </div>
             <!-- /.box -->
           </div>
         </div>
+        
       </div>
 
 
@@ -1075,6 +959,7 @@
         <div class="col-md-4"></div>
       </div>
       <br>
+      </form>
         </div>
       </div>
 
@@ -1084,10 +969,22 @@
         <div class="col-md-4"></div>
       </div> -->
 
-</form>
+
 
     </section>
   </div>
+  <script type="text/javascript">
+      function validateForm() {
+        var x = document.forms["myForm"]["hotel_name"].value;
+        if (x == "") {
+          alert("Hotel Name Must be filled out..");
+          return false;
+        }
+        else {
+          alert("Data Inserted Successfully.");
+        }
+      }
+  </script>
 
  
   <footer class="main-footer">
@@ -1215,7 +1112,7 @@
         //Once add button is clicked
         $(addButton).click(function(){
             var nam = $(this).parents('.field_wrapper').find('input').attr('data-role');
-            var fieldHTML = '<div><input type="text" class="form-control" placeholder="'+nam.substr(0,1).toUpperCase()+nam.substr(1)+'" style="width: 55%" name="'+nam+'[]" value=""/><a href="javascript:void(0);"  style="position: relative;bottom: 31px;left: 163px;" class="remove_button"><img src="<?php echo base_url('assets/images/remove-icon.png'); ?>"/></a></div>'; //New input field html
+            var fieldHTML = '<div><input type="text" maxlength="11" minlength="10" minlength="10" class="form-control" placeholder="'+nam.substr(0,1).toUpperCase()+nam.substr(1)+'" style="width: 55%" name="'+nam+'[]" value=""/><a href="javascript:void(0);"  style="position: relative;bottom: 31px;left: 163px;" class="remove_button"><img src="<?php echo base_url('assets/images/remove-icon.png'); ?>"/></a></div>'; //New input field html
             //Check maximum number of input fields
             if(x < maxField){
                 x++; //Increment field counter
@@ -1233,228 +1130,394 @@
 </script>
 
 
-      <script>
-            
-            var rIndex,
-                table = document.getElementById("table");
-            
-            // check the empty input
-            function checkEmptyInput()
-            {
-                var isEmpty = false,
-                    fname = document.getElementById("fname").value,
-                    lname = document.getElementById("lname").value,
-                    age = document.getElementById("age").value;
-            
-                if(fname === ""){
-                    alert("No Of Bed Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(lname === ""){
-                    alert("No of Person Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(age === ""){
-                    alert("Room Type Connot Be Empty");
-                    isEmpty = true;
-                }
-                return isEmpty;
-            }
-            
-            // add Row
-            function addHtmlTableRow()
-            {
-                // get the table by id
-                // create a new row and cells
-                // get value from input text
-                // set the values into row cell's
-                if(!checkEmptyInput()){
-                var newRow = table.insertRow(table.length),
-                    cell1 = newRow.insertCell(0),
-                    cell2 = newRow.insertCell(1),
-                    cell3 = newRow.insertCell(2),
-                    fname = document.getElementById("fname").value,
-                    lname = document.getElementById("lname").value,
-                    age = document.getElementById("age").value;
-            
-                cell1.innerHTML = fname;
-                cell2.innerHTML = lname;
-                cell3.innerHTML = age;
-                // call the function to set the event to the new row
-                selectedRowToInput();
-            }
-            }
-            
-            // display selected row data into input text
-            function selectedRowToInput()
-            {
-                
-                for(var i = 1; i < table.rows.length; i++)
-                {
-                    table.rows[i].onclick = function()
-                    {
-                      // get the seected row index
-                      rIndex = this.rowIndex;
-                      document.getElementById("fname").value = this.cells[0].innerHTML;
-                      document.getElementById("lname").value = this.cells[1].innerHTML;
-                      document.getElementById("age").value = this.cells[2].innerHTML;
-                    };
-                }
-            }
-            selectedRowToInput();
-            
-            function editHtmlTbleSelectedRow()
-            {
-                var fname = document.getElementById("fname").value,
-                    lname = document.getElementById("lname").value,
-                    age = document.getElementById("age").value;
-               if(!checkEmptyInput()){
-                table.rows[rIndex].cells[0].innerHTML = fname;
-                table.rows[rIndex].cells[1].innerHTML = lname;
-                table.rows[rIndex].cells[2].innerHTML = age;
-              }
-            }
-            
-            function removeSelectedRow()
-            {
-                table.deleteRow(rIndex);
-                // clear input text
-                document.getElementById("fname").value = "";
-                document.getElementById("lname").value = "";
-                document.getElementById("age").value = "";
-            }
+
+        <script type="text/javascript">
+          $(document).ready(function () {
+    var counter = 0;
+
+    $("#addrow").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+
+      
+        cols += '<td><input type="text" class="form-control" name="file_description['+counter+'][]" id="file_description" placeholder="File Description"  /></td>';
+        cols += '<td><input type="file" class="form-control" placeholder="Upload File" name="file_name['+counter+'][]" id="file_name"/></td>';
+
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.order-list").append(newRow);
+        counter++;
+    });
+
+
+
+    $("table.order-list").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1
+    });
+
+
+});
+
+
+
+function calculateRow(row) {
+    var price = +row.find('input[name^="price"]').val();
+
+}
+
+function calculateGrandTotal() {
+    var grandTotal = 0;
+    $("table.order-list").find('input[name^="price"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#grandtotal").text(grandTotal.toFixed(2));
+}
         </script>
 
 
-          <script>
-            
-            var rIndex1,
-                table1 = document.getElementById("table1");
-            
-            // check the empty input
-            function checkEmptyInputp()
-            {
-                var isEmpty = false,
-                    fpname = document.getElementById("fpname").value,
-                    lpname = document.getElementById("lpname").value,
-                    title  = document.getElementById("title").value,
-                    phone  = document.getElementById("phone").value,
-                    mobile = document.getElementById("mobile").value,
-                    email  = document.getElementById("email").value;
-                    //age = document.getElementById("age").value;
-            
-                if(lpname === ""){
-                    alert("Name Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(title === ""){
-                    alert("Title Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(mobile === ""){
-                    alert("Mobile Connot Be Empty");
-                    isEmpty = true;
-                }
-                return isEmpty;
-            }
-            
-            // add Row
-            function addHtmlTable()
-            {
-                // get the table by id
-                // create a new row and cells
-                // get value from input text
-                // set the values into row cell's
-                if(!checkEmptyInput()){
-                var newRow = table1.insertRow(table1.length),
-                    cell1 = newRow.insertCell(0),
-                    cell2 = newRow.insertCell(1),
-                    cell3 = newRow.insertCell(2),
-                    cell4 = newRow.insertCell(3),
-                    cell5 = newRow.insertCell(4),
-                    cell6 = newRow.insertCell(5),
-                    //cell7 = newRow.insertCell(6),
-                    fpname = document.getElementById("fpname").value,
-                    lpname = document.getElementById("lpname").value,
-                    title = document.getElementById("title").value,
-                    phone = document.getElementById("phone").value,
-                    mobile = document.getElementById("mobile").value,
-                    email = document.getElementById("email").value;
-                   // age = document.getElementById("age").value;
+<script type="text/javascript">
+          $(document).ready(function () {
+    var c_p_counter = 0;
 
-                    /* if (document.getElementById('age1').checked) 
-                      age = "Active";
-                    else if(document.getElementById('age2').checked)
-                       age = "Inactive";*/
-         
-                cell1.innerHTML = fpname;
-                cell2.innerHTML = lpname;
-                cell3.innerHTML = title;
-                cell4.innerHTML = phone;
-                cell5.innerHTML = mobile;
-                cell6.innerHTML = email;
-                //cell7.innerHTML = age;
-                // call the function to set the event to the new row
-                selectedRowToInput();
-            }
-            }
-            
-            // display selected row data into input text
-            function selectedRowToInputp()
-            {
-                
-                for(var i = 1; i < table1.rows.length; i++)
-                {
-                    table1.rows[i].onclick = function()
-                    {
-                      // get the seected row index
-                      rIndex1 = this.rowIndex;
-                      document.getElementById("fpname").value = this.cells[0].innerHTML;
-                      document.getElementById("lpname").value = this.cells[1].innerHTML;
-                      document.getElementById("title").value = this.cells[2].innerHTML;
-                      document.getElementById("phone").value = this.cells[3].innerHTML;
-                      document.getElementById("mobile").value = this.cells[4].innerHTML;
-                      document.getElementById("email").value = this.cells[5].innerHTML;
-                     // document.getElementById("age").value = this.cells[6].innerHTML;
-                    };
-                }
-            }
-            selectedRowToInput();
-            
-            function editHtmlTbleSelectedRowp()
-            {
-                var fpname = document.getElementById("fpname").value,
-                    lpname = document.getElementById("lpname").value,
-                    title = document.getElementById("title").value,
-                    phone = document.getElementById("phone").value,
-                    mobile = document.getElementById("mobile").value,
-                    email = document.getElementById("email").value;
-                   // age = document.getElementById("age").value;
-               if(!checkEmptyInput()){
-                table1.rows[rIndex1].cells[0].innerHTML = fpname;
-                table1.rows[rIndex1].cells[1].innerHTML = lpname;
-                table1.rows[rIndex1].cells[2].innerHTML = title;
-                table1.rows[rIndex1].cells[3].innerHTML = phone;
-                table1.rows[rIndex1].cells[4].innerHTML = mobile;
-                table1.rows[rIndex1].cells[5].innerHTML = email;
-               // table1.rows[rIndex].cells[6].innerHTML = age;
-              }
-            }
-            
-            function removeSelectedRowp()
-            {
-                table1.deleteRow(rIndex1);
-                // clear input text
-                document.getElementById("fpname").value = "";
-                document.getElementById("lpname").value = "";
-                document.getElementById("title").value = "";
-                document.getElementById("phone").value = "";
-                document.getElementById("mobile").value = "";
-                document.getElementById("email").value = "";
-                //document.getElementById("age").value = "";
-            }
+    $("#addrows").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+        var name = $("#contact_person_name").val();
+        var title = $("#contact_person_title").val();
+        var phone = $("#contact_person_phone").val();
+        var mobile = $("#contact_person_mobile").val();
+        var email = $("#contact_person_email").val();
+        var inactive_flag = $("#contact_person_inactive_flag:checked").val();
+        var active = '';
+        var inactive = '';
+        console.log(inactive_flag);
+        if(inactive_flag == 0)
+          active = 'checked';
+        else if(inactive_flag == 1)
+          inactive = 'checked';
+
+
+        cols += '<td><input type="text" class="form-control" placeholder="Contact Name" value="'+name+'" name="contact_person_name['+ c_p_counter +'][]" required="contact_person_name"/></td>';
+        cols += '<td><input type="text" class="form-control" placeholder="Contact Title" value="'+title+'" name="contact_person_title['+ c_p_counter +'][]" required="contact_person_title"/></td>';
+        cols += '<td><input type="text" maxlength="11" minlength="10" class="form-control" placeholder="03333906233" value="'+phone+'" name="contact_person_phone['+ c_p_counter +'][]"/></td>';
+        cols += '<td><input type="text" maxlength="11" minlength="10" class="form-control" placeholder="03333906233" value="'+mobile+'" name="contact_person_mobile['+ c_p_counter +'][]" required="contact_person_mobile"/></td>';
+        cols += '<td><input type="email" class="form-control" placeholder="Contact Email" value="'+email+'" name="contact_person_email['+ c_p_counter +'][] required="contact_person_email"/></td>';
+        cols += '<td><label><input type="radio" class="checkbox1 active" value="0" '+active+' name="contact_person_inactive_flag['+ c_p_counter +'][]"/>Active</label><label><input type="radio" class="checkbox1 inactive" value="1" '+inactive+' name="contact_person_inactive_flag['+ c_p_counter +'][]"/>Inactive</label></td>';
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.orders-lists").append(newRow);
+        c_p_counter++;
+        $("#contact_person_name").val("");
+        $("#contact_person_title").val("");
+        $("#contact_person_phone").val("");
+        $("#contact_person_mobile").val("");
+        $("#contact_person_email").val("");
+        $(".col-md-4 input[name='contact_person_inactive_flag[]']").each(function(){
+          $(this).prop("checked", false);
+        });
+    });
+
+
+
+    $("table.orders-lists").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1
+    });
+
+
+});
+
+
+
+function calculateRow(row) {
+    var prices = +row.find('input[name^="prices"]').val();
+
+}
+
+function calculateGrandTotal() {
+    var grandTotal = 0;
+    $("table.orders-lists").find('input[name^="prices"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#grandtotal").text(grandTotal.toFixed(2));
+}
         </script>
 
 
-</body>
-</html>
+
+
+<script type="text/javascript">
+          $(document).ready(function () {
+    var c_p_counter = 0;
+
+
+    $("#addroom").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+        var bed = $("#room_type_nob").val();
+        /*var person = $("#room_type_nop").val();*/
+        var room = $("#room_type_room").val();
+        var web_flag = $("#room_type_web_flag:checked").val();
+        var web = '';
+        console.log(web_flag);
+        if(web_flag == 1)
+          web = 'checked';
+
+
+
+        var temp = [];
+        var selected = '';
+        temp.push('<option value=""></option>');
+        <?php foreach ($rooms as $room) { ?>
+          if (<?= $room->room_id ?> == room) {
+            selected = 'selected';
+          }else {
+            selected ='';
+          }
+          temp.push('<option value="<?= $room->room_id ?>"'+selected+'><?= $room->room_type_name ?></option>');
+        <?php } ?>
+        var room_html = '<select class="form-control" name="room_type_room['+c_p_counter+'][]" required="room_type_room">'+temp.join(' ')+'</select>';
+        
+
+
+        cols += '<td><input type="text" class="form-control" placeholder="No Of Bed" value="'+bed+'" name="room_type_nob['+ c_p_counter +'][]" required="room_type_nob"/></td>';
+       /* cols += '<td><input type="text" class="form-control" placeholder="No Of Person" value="'+person+'" name="room_type_nop['+ c_p_counter +'][]"/></td>';*/
+        cols += '<td>'+room_html+'</td>';
+        cols += '<td><label><input type="checkbox" class="checkbox1" value="1" '+web+' name="room_type_web_flag['+ c_p_counter +'][]"/>Appear in web</label></td>';
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.orders-listsroom").append(newRow);
+        c_p_counter++;
+        $("#room_type_nob").val("");
+        /*$("#room_type_nop").val("");*/
+        $("#room_type_room").val("");
+        $(".col-md-4 input[name='room_type_web_flag[]']").each(function(){
+          $(this).prop("checked", false);
+        });
+    });
+
+
+
+    $("table.orders-listsroom").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1
+    });
+
+
+});
+
+
+
+function calculateRow(row) {
+    var prices = +row.find('input[name^="prices"]').val();
+
+}
+
+function calculateGrandTotal() {
+    var grandTotal = 0;
+    $("table.orders-listsroom").find('input[name^="prices"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#grandtotal").text(grandTotal.toFixed(2));
+}
+        </script>
+
+
+<script type="text/javascript">
+          $(document).ready(function () {
+    var c_p_counter = 0;
+
+
+    $("#addmeal").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+        var room = $("#meal_plan_meal").val();
+        var web_flag = $("#meal_plan_web_flag:checked").val();
+        var web = '';
+        console.log(web_flag);
+        if(web_flag == 1)
+          web = 'checked';
+
+   
+
+        var temp = [];
+        var selected = '';
+        temp.push('<option value=""></option>');
+        <?php foreach ($meals as $meal) { ?>
+          if (<?= $meal->meal_plan_id ?> == room) {
+            selected = 'selected';
+          }else {
+            selected ='';
+        }
+        temp.push('<option value="<?= $meal->meal_plan_id ?>" '+selected+'><?= $meal->meal_plan_desc ?></option>');
+      <?php } ?>
+      var meal_html = '<select class="form-control" name="meal_plan_meal['+c_p_counter+'][]">'+temp.join(' ')+'</select>';
+        
+
+        cols += '<td>'+meal_html+'</td>';
+        cols += '<td><label><input type="checkbox" class="checkbox1" value="1" '+web+' name="meal_plan_web_flag['+ c_p_counter +'][]"/>Appear in web</label></td>';
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.orders-listsmp").append(newRow);
+        c_p_counter++;
+        $("#meal_plan_meal").val("");
+        $(".col-md-4 input[name='meal_plan_web_flag[]']").each(function(){
+          $(this).prop("checked", false);
+        });
+    });
+
+
+
+    $("table.orders-listsmp").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1
+    });
+
+
+});
+
+
+
+function calculateRow(row) {
+    var prices = +row.find('input[name^="prices"]').val();
+
+}
+
+function calculateGrandTotal() {
+    var grandTotal = 0;
+    $("table.orders-listsmp").find('input[name^="prices"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#grandtotal").text(grandTotal.toFixed(2));
+}
+        </script>
+
+
+
+
+
+<script type="text/javascript">
+          $(document).ready(function () {
+    var c_p_counter = 0;
+
+
+     $("#addview").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+        var room = $("#view_name").val();
+        var web_flag = $("#view_web_flag:checked").val();
+        var web = '';
+        console.log(web_flag);
+        if(web_flag == 1)
+          web = 'checked';
+
+
+      var temp = [];
+        var selected = '';
+        temp.push('<option value=""></option>');
+        <?php foreach ($views as $view) { ?>
+          if (<?= $view->hot_view_id ?> == room) {
+            selected = 'selected';
+          }else {
+            selected ='';
+        }
+        temp.push('<option value="<?= $view->hot_view_id ?>" '+selected+'><?= $view->hot_view_desc ?></option>');
+      <?php } ?>
+      var view_html = '<select class="form-control" name="view_name['+c_p_counter+'][]">'+temp.join(' ')+'</select>';
+        
+
+        cols += '<td>'+view_html+'</td>';
+        cols += '<td><label><input type="checkbox" class="checkbox1" value="1" '+web+' name="view_web_flag['+ c_p_counter +'][]"/>Appear in web</label></td>';
+
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
+        newRow.append(cols);
+        $("table.orders-listsview").append(newRow);
+        c_p_counter++;
+        $("#view_name").val("");
+        $(".col-md-4 input[name='view_web_flag[]']").each(function(){
+          $(this).prop("checked", false);
+        });
+    });
+
+
+
+    $("table.orders-listsview").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1
+    });
+
+
+});
+
+
+
+
+
+
+function calculateRow(row) {
+    var prices = +row.find('input[name^="prices"]').val();
+
+}
+
+function calculateGrandTotal() {
+    var grandTotal = 0;
+    $("table.orders-listsview").find('input[name^="prices"]').each(function () {
+        grandTotal += +$(this).val();
+    });
+    $("#grandtotal").text(grandTotal.toFixed(2));
+}
+        </script>
+
+
+
+<script>
+$(document).ready(function(){
+ $('#country').change(function(){
+  var country_id = $('#country').val();
+  if(country_id != '')
+  {
+   $.ajax({
+    url:"<?php echo base_url(); ?>client/fetch_state",
+    method:"POST",
+    data:{country_id:country_id},
+    success:function(data)
+    {
+     $('#state').html(data);
+     $('#city').html('<option value="">Select City</option>');
+    }
+   });
+  }
+  else
+  {
+   $('#state').html('<option value="">Select State</option>');
+   $('#city').html('<option value="">Select City</option>');
+  }
+ });
+
+ $('#state').change(function(){
+  var state_id = $('#state').val();
+  if(state_id != '')
+  {
+   $.ajax({
+    url:"<?php echo base_url(); ?>city/fetch_city",
+    method:"POST",
+    data:{state_id:state_id},
+    success:function(data)
+    {
+     $('#city').html(data);
+    }
+   });
+  }
+  else
+  {
+   $('#city').html('<option value="">Select City</option>');
+  }
+ });
+ 
+});
+</script>

@@ -41,7 +41,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('credit'); ?>" method = "post">
+            <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('credit'); ?>" method = "post">
               <div class="box-body">
                 <div class="form-group"style="    margin-top: -7%;">
                   <?php echo form_label('ID'); ?>
@@ -49,7 +49,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                  <?php echo form_label('No of Days'); ?><?php echo form_error('no_of_days'); ?> <br />
+                  <?php echo form_label('No of Days'); ?>
                   <?php echo form_input(array('id' => 'no_of_days', 'name' => 'no_of_days', 'class'=>'form-control', 'placeholder'=>'e.g 10')); ?><br />
                 </div>
 
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inactive_flag" class="" style="    font-weight: 400; margin-top: -6%"><?php echo form_error('inactive_flag'); ?> <br />
+                  <label for="inactive_flag" class="" style="    font-weight: 400; margin-top: -6%">
                     <input type="radio" id="inactive_flag" name="inactive_flag" value="0" class="checkbox1">
                     Active
                   </label>
@@ -89,7 +89,7 @@
             <!-- form start -->
 
             <div class="form-group">
-              <?php echo form_label('Comment/Notes'); ?><?php echo form_error('note'); ?> <br />
+              <?php echo form_label('Comment/Notes'); ?>
               <textarea class="form-control" rows="10" id="note" name="note" placeholder="note"></textarea>
             </div>
 
@@ -102,7 +102,7 @@
       </div>
 <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block" onclick="myFunction()"> <?php echo form_submit(array('id' => 'submit', 'value' => 'Submit', 'class' => 'btn btn-primary center-block')); ?> </div>
+        <div class="col-md-4  center-block" form="myForm"> <?php echo form_submit(array('id' => 'submit', 'value' => 'Submit', 'class' => 'btn btn-primary center-block')); ?> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -116,8 +116,16 @@
       <br>
       
  <script>
-function myFunction() {
-    alert("Data Inserted successfully");
+function validateForm() {
+    var x = document.forms["myForm"]["credit_term_desc"].value;
+    if (x == "") {
+        alert("Credit Terms must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
 }
 </script>
 </form>

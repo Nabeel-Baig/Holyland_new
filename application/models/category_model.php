@@ -12,6 +12,27 @@ class category_model extends CI_Model{
     }
 
 
+
+// Fetch Category in Client Table
+    function fetch_category()
+ {     $this->db->order_by("category_desc", "ASC");
+       $this->db->where('inactive_flag', ACTIVE);
+       $result = $this->db->get("00000_mst_category");
+        return $result->result();
+ }
+
+ // This function calls in Client As Show category Details detail in Client model
+             function getcategoryBycategoryId($category_id){
+                $this->db->select('category_desc');
+                $this->db->from('00000_mst_category');
+                $this->db->where('category_id', $category_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
+
+
+
     public function showAllcategory(){
    /* $this->db->order_by('category_id', 'desc');
     $query = $this->db->get('00000_mst_category');

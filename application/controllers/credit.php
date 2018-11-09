@@ -17,13 +17,8 @@ class Credit extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('credit_term_desc', 'Credit Terms', 'required|min_length[1]|max_length[25]');
+        $this->form_validation->set_rules('credit_term_desc', 'Credit Terms', 'required|min_length[1]|max_length[255]');
 
-        //Validating Name Field
-        $this->form_validation->set_rules('no_of_days', 'Days', 'required|min_length[1]|max_length[25]');
-
-        //Validating Radio Button
-        $this->form_validation->set_rules('inactive_flag', 'Status', 'required|min_length[0]|max_length[1]');
         
         if ($this->form_validation->run() == FALSE) {
              $this->load->view('header');

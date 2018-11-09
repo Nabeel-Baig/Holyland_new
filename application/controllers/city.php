@@ -21,17 +21,17 @@ public   function index(){
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('country', 'Country Name', 'required|min_length[0]|max_length[9]');
+        $this->form_validation->set_rules('country', 'Country Name', 'required|min_length[0]|max_length[11]');
 
         //Validating Name Field
-        $this->form_validation->set_rules('state', 'State Name', 'required|min_length[0]|max_length[9]');
+        $this->form_validation->set_rules('state', 'State Name', 'required|min_length[0]|max_length[11]');
 
         //Validating Name Field
-        $this->form_validation->set_rules('city_name', 'City Name', 'required|min_length[3]|max_length[15]');
+        $this->form_validation->set_rules('city_name', 'City Name', 'required|min_length[3]|max_length[255]');
 //sadsadsad
 
        
-       $data['countries'] = $this->country_model->get_Countries();
+       $data['countries'] = $this->country_model->fetch_country();
        /*$data['countries'] = $this->state_model->getState_list();*/
 
         if ($this->form_validation->run() == FALSE) {
@@ -61,11 +61,12 @@ public   function index(){
         }
     }
 
-// this function shows the drop down menu of Country with reference to state
+/*// this function shows the drop down menu of Country with reference to state
 public function get_state()
-{
-  $country_id = $this->input->post('country_id');
-  $state = $this->state_model->get_state($country_id);
+{ try {
+  
+        $country_id = $this->input->post('country_id');
+        $state = $this->state_model->get_state($country_id);
   if (count($state)>0)
    {
       $pro_select_box = '';
@@ -75,12 +76,25 @@ public function get_state()
       }
       echo json_encode($pro_select_box);
   }
+
+} catch (Exception $e) {
+  
 }
+  
+}*/
+
+ function fetch_city()
+ {
+  if($this->input->post('state_id'))
+  {
+   echo $this->city_model->fetch_city($this->input->post('state_id'));
+  }
+ }
 
 public     function city_list() {
             /*$id = $this->uri->segment(3);*/
             $data =  array();
-            $data['countries'] = $this->country_model->getCountries();
+            $data['countries'] = $this->country_model->fetch_country();
              $this->load->view('header');
             $this->load->view('aside');
             //$this->load->view('nav_bar');

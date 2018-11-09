@@ -13,7 +13,7 @@ public   function index(){
     $this->load->library('form_validation');
     $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
      //Validating Name Field
-        $this->form_validation->set_rules('room_type_name', 'Room Name', 'required|min_length[2]|max_length[25]');
+        $this->form_validation->set_rules('room_type_name', 'Room Name', 'required|min_length[1]|max_length[255]');
 
         //Validating no_of_persons Button
         $this->form_validation->set_rules('no_of_persons', 'No of Person', 'required|min_length[0]|max_length[15]');
@@ -68,7 +68,7 @@ public function showAllroom(){
     echo json_encode($output, JSON_HEX_QUOT | JSON_HEX_TAG);
   }
 
-  public function addroom(){
+  /*public function addroom(){
     $result = $this->room_model->addroom();
     $msg['success'] = false;
     $msg['type'] = 'add';
@@ -76,7 +76,7 @@ public function showAllroom(){
       $msg['success'] = true;
     }
     echo json_encode($msg);
-  }
+  }*/
 
   public function editroom(){
     $result = $this->room_model->editroom();
@@ -87,6 +87,8 @@ public function showAllroom(){
     $result = $this->room_model->updateroom();
     $msg['success'] = false;
     $msg['type'] = 'update';
+    /*echo "<pre>";
+    print_r($result);*/
     if($result){
       $msg['success'] = true;
     }

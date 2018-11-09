@@ -32,7 +32,31 @@ $this->db->delete('00000_mst_city');
 
 }
 */
+// this function shows the drop down menu of State with reference to City in Add Client
+function fetch_city($state_id)
+ {
+  $this->db->where('state_id', $state_id);
+  $this->db->order_by('city_name', 'ASC');
+  $this->db->where('inactive_flag', ACTIVE);
+  $query = $this->db->get('00000_mst_city');
+  $output = '<option value="">Select City</option>';
+  foreach($query->result() as $row)
+  {
+   $output .= '<option value="'.$row->city_id.'">'.$row->city_name.'</option>';
+  }
+  return $output;
+ }
 
+
+ // This function calls in Client As Show city Details detail in Client model
+             function getcityBycityId($city_id){
+                $this->db->select('city_name');
+                $this->db->from('00000_mst_city');
+                $this->db->where('city_id', $city_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
 
 
 // for Country Update Modal
@@ -167,7 +191,7 @@ $this->db->delete('00000_mst_city');
                 $country = $this->country_model->getCountryByCountryId($aRow[$bColumns[$i]]);
                 $row[] = $country->country_name;
             }elseif ($bColumns[$i] == 'state_id') {
-                $state = $this->state_model->getStateBySateId($aRow[$bColumns[$i]]);
+                $state = $this->state_model->getstateBystateId($aRow[$bColumns[$i]]);
                 $row[] = $state->state_name;
             }  else if ($bColumns[$i] != ' ') {
                 // General output

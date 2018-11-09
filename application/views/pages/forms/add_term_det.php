@@ -39,7 +39,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-          <form role="form" action="<?php echo base_url('term/add_term_det'); ?>" method="post">
+          <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('term/add_term_det'); ?>" method="post">
               <div class="box-body">
                 <div class="form-group">
                   <label>ID</label>
@@ -122,7 +122,7 @@
 
       <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" name="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" name="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
     </br>
@@ -135,9 +135,22 @@
 
 </form>
 <script type="text/javascript">
-  function myFunction() {
-    alert('Data Inserted Successfully..!!');
-  }
+function validateForm() {
+    var x = document.forms["myForm"]["term_cond_id"].value;
+    var y = document.forms["myForm"]["term_cond_det_desc"].value;
+    if (x == "") {
+        alert("Term Name must be filled out");
+        return false;
+    }
+    if (y == "") {
+        alert("Term Detail Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
+}
 </script>
     </section>
   </div>

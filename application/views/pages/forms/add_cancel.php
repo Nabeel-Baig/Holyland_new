@@ -34,18 +34,18 @@
         <br>
         <br>
         <!-- left column -->
-        <div class="col-md-6" style="margin-top: 2%;">
+        <div class="col-md-6" style="margin-top: 0%;">
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('cancel'); ?>" method="post">
+            <form role="form" name="myForm" id="myForm" action="<?php echo base_url('cancel'); ?>" onsubmit="return validateForm()" method="post">
               <div class="box-body">
                 <div class="form-group">
                   <label>ID</label>
                   <input type="text" class="form-control" placeholder="ID Auto Generated" disabled>
                 </div>
                 <br>
-                <div class="form-group">
+                <div class="form-group" style="margin-top: -3%">
                   <label>Name</label> <?php echo form_error('reason_name'); ?>
                   <input type="text" class="form-control" placeholder="Name" id="reason_name" name="reason_name">
                 </div>
@@ -70,7 +70,7 @@
             <!-- form start -->
 
             <div class="form-group">
-              <label for="comment" style="margin-top: 7%">Note</label>
+              <label for="comment" style="margin-top: 3%">Note</label>
               <textarea class="form-control" rows="5" id="note" name="note" placeholder="Note"></textarea>
             </div>
 
@@ -83,7 +83,7 @@
       </div>
       <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -96,9 +96,17 @@
 
 </form>
 <script type="text/javascript">
-  function myFunction() {
-    alert("Data Inserted Successfully.!");
-  }
+  function validateForm() {
+    var x = document.forms["myForm"]["reason_name"].value;
+    if (x == "") {
+        alert("Cancel must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
+}
 </script>
 
     </section>

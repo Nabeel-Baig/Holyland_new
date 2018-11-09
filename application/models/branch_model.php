@@ -13,6 +13,25 @@ class branch_model extends CI_Model{
        $this->db->insert('00000_mst_branch', $data);   
     }
 
+// Fetch Branch in Client Table
+    function fetch_branch()
+ {
+  $this->db->order_by("branch_name", "ASC");
+  $this->db->where("inactive_flag", ACTIVE);
+  $query = $this->db->get("00000_mst_branch");
+  return $query->result();
+ }
+
+ // This function calls in Client As Show branch Details detail in Client model
+             function getbranchBybranchId($branch_id){
+                $this->db->select('branch_name');
+                $this->db->from('00000_mst_branch');
+                $this->db->where('branch_id', $branch_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
+
 
     public function showAllbranch(){
    /* $this->db->order_by('branch_id', 'desc');

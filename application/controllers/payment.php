@@ -17,7 +17,7 @@ class Payment extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('pay_term_desc', 'Payment Terms', 'required|min_length[1]|max_length[25]');
+        $this->form_validation->set_rules('pay_term_desc', 'Payment Terms', 'required|min_length[1]|max_length[255]');
 
         
         if ($this->form_validation->run() == FALSE) {

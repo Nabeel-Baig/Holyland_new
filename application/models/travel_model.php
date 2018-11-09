@@ -16,6 +16,16 @@ class travel_model extends CI_Model{
     }
 
 
+// Fetch Travel in Client Table
+    function fetch_travel()
+ {
+  $this->db->order_by("travel_type_desc", "ASC");
+  $this->db->where("inactive_flag", ACTIVE);
+  $query = $this->db->get("00000_mst_travel_type");
+  return $query->result();
+ }
+
+
     public function showAlltravel(){
    /* $this->db->order_by('travel_type_id', 'desc');
     $query = $this->db->get('00000_mst_travel_type');

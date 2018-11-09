@@ -39,7 +39,10 @@
 */
 
 $route['default_controller'] = "home";
+/*$route['client'] = 'client';
+$route['client'] = 'client/get_clients';*/
 $route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
 
 
 /* End of file routes.php */

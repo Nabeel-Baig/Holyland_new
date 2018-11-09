@@ -308,7 +308,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Modal title</h4>
       </div>
-      <div class="modal-body">
+      <!-- <div class="modal-body">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="credit_term_id" value="0">
             <div class="form-group">
@@ -340,7 +340,67 @@
                   </div>
                    </div>
           </form>
-      </div>
+      </div> -->
+
+
+     <section class="content">
+      <div class="box" style="background: #c1c1c1;">
+      <div class="modal-body">
+        <form role="form" id="myForm" action="" method="post" class="form-horizontal">
+        <section class="content">
+          <div class="row">
+      
+            <div class="col-md-6">
+
+              
+                <div class="box-body">
+                  <div class="form-group">
+                    <input type="hidden" name="credit_term_id" class="form-control" value="0" placeholder="ID Auto Generate">
+                  </div>
+                  <div class="form-group">
+                    <label>No Of Days</label>
+                    <input type="numeric" name="no_of_days" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Notes</label>
+                    <textarea class="form-control" name="note"></textarea>
+                  </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+          
+                <div class="form-group" style="margin-top: 10%;">
+                  <label>Credit Terms</label>
+                 <input type="text" name="credit_term_desc" class="form-control">
+                </div>
+
+              <div class="form-group">
+          <label for="inactive_flag" class="" style=" margin-top: 15%;    font-weight: 400;margin-left: 6%;">
+            <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+            Active
+          </label>
+          <label for="inactive_flag" style="    font-weight: 400;    margin-left: 10%;">
+            <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">
+            Inactive
+          </label>
+        </div>
+
+
+              </form>
+
+              <!-- /.box -->
+            </div>
+
+          </div>
+
+       </section>
+   
+ </div>
+</div>
+
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
@@ -385,7 +445,7 @@
       //validate form
       var no_of_days = $('input[name=no_of_days]');
       var credit_term_desc = $('input[name=credit_term_desc]');
-      var address = $('input[name=note]');
+      var address = $('textarea[name=note]');
       var result = '';
        if(no_of_days.val()==''){
         no_of_days.parent().parent().addClass('has-error');
@@ -453,7 +513,7 @@
         success: function(data){
           $('input[name=no_of_days]').val(data.no_of_days);
           $('input[name=credit_term_desc]').val(data.credit_term_desc);
-          $('input[name=note]').val(data.note);
+          $('textarea[name=note]').val(data.note);
           $('input[name=credit_term_id]').val(data.credit_term_id);
           if(data.inactive_flag == 1){
             $('.inactive').prop('checked', true);

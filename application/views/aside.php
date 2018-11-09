@@ -112,6 +112,23 @@
 
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-eye"></i> <span>View Type</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('view'); ?>"><i class="fa fa-circle-o">
+            </i> Add View</a></li>
+            <li><a href="<?php echo base_url('view/view_list'); ?>"><i class="fa fa-circle-o">
+            </i>View List</a></li>
+          </ul>
+        </li>
+
+
+
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-cloud"></i> <span>Seasons</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -135,10 +152,12 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('term'); ?>"><i class="fa fa-circle-o">
             </i> Add Terms</a></li>
+            <li><a href="<?php echo base_url('term/trm_list'); ?>"><i class="fa fa-circle-o">
+            </i>Terms List</a></li>
             <li><a href="<?php echo base_url('term/add_term_det'); ?>"><i class="fa fa-circle-o">
             </i> Add Terms Detail</a></li>
             <li><a href="<?php echo base_url('term/term_list'); ?>"><i class="fa fa-circle-o">
-            </i>List</a></li>
+            </i>Detail List</a></li>
           </ul>
         </li>
 
@@ -266,6 +285,22 @@
                   </i>Travel Type List</a></li>
               </ul>
           </li>
+
+           <li class="treeview">
+              <a href="#">
+                  <i class="fa fa-cutlery"></i> <span>Meal</span>
+                  <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="<?php echo base_url('meal'); ?>"><i class="fa fa-circle-o">
+                  </i> Add Meal</a></li>
+                  <li><a href="<?php echo base_url('meal/meal_list'); ?>"><i class="fa fa-circle-o">
+                  </i>Meal List</a></li>
+              </ul>
+          </li>
+
 
           <li class="treeview">
               <a href="#">

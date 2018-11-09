@@ -52,17 +52,14 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('season'); ?>" method="post">
+            <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('season'); ?>" method="post">
               <div class="box-body">
                 <div class="form-group">
                 <label>ID</label>
                   <input type="email" class="form-control" placeholder="ID Auto Generate" disabled>
                 </div>
                 <br>
-                <div class="form-group">
-                <label>Season Name</label> <?php echo form_error('seeson_name'); ?>
-                  <input type="text" class="form-control" placeholder="Season Name" id="seeson_name" name="seeson_name">
-                </div>
+              
                 <label for="gor_from_date">Gregorian Calendar <br><small>From</small> </label>
                 <div class="form-group">
                   <input type="date" class="form-control" id="gor_from_date" name="gor_from_date">
@@ -102,25 +99,12 @@
             <!-- form start -->
 
             <div class="box-body">
-              <div class="form-group">
-              <label>Term & Condition</label>
-                    <select list="hosting-plan" id="term_cond_id" name="term_cond_id" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                  <option>Select Terms & Condition</option>
-                  <?php  foreach ($terms as $term){ ?>
-                    <option value="<?= $term->term_cond_id ?>"><?= $term->term_cond_desc ?></option>
-                  <?php } ?>
-                </select>
-              </div>
-              <br>
-              <div class="form-group">
-              <label>Term & Condition Detail</label>
-                 <select list="hosting-plan" id="term_cond_det_id" name="term_cond_det_id" disabled="" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                  <option>Select Term & Condition Detail</option>
-                  <?php  foreach ($terms as $term) { ?>
-                    <option value="<?= $term->term_cond_det_id ?>"><?= $term->term_cond_det_desc ?></option>
-                  <?php } ?>
-                </select>
-              </div>
+     
+                <div class="form-group">
+                <label>Season Name</label> <?php echo form_error('seeson_name'); ?>
+                  <input type="text" class="form-control" placeholder="Season Name" id="seeson_name" name="seeson_name">
+                </div>
+             <br>
               <label for="gor_to_date"><br><small>To</small> </label>
               <div class="form-group">
                 <input type="date" class="form-control" id="gor_to_date" name="gor_to_date">
@@ -148,7 +132,7 @@
 </div>
  <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myfunction()">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -161,9 +145,17 @@
 
 </form>
 <script type="text/javascript">
-  function myfunction() {
-    alert("Season Inserted Successfully..!!");
-  }
+  function validateForm() {
+    var x = document.forms["myForm"]["seeson_name"].value;
+    if (x == "") {
+        alert("Season Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
+}
 </script>
 
     </section>

@@ -46,39 +46,12 @@
                   <th>Gre To</th>
                   <th>Hijri From</th>
                   <th>Hijri To</th>
-                  <th>Term & Condition</th>
-                  <th>Term Detail</th>
                   <th style="text-align: center;">Action</th>
                 </tr>
 
                 </thead>
                 <tbody id="showdata">
-                <!-- <tr>
-                  <?php //foreach ($cities as $country) { ?>
-                  
-                  <td><?php// echo $country->season_id; ?></td>
-                  <td><?php //echo $country->term_cond_desc;?></td>
-                  <td><?php// echo $country->term_cond_det_desc; ?></td>
-                  <td><?php //echo $country->seeson_name; ?></td>
-                  <td><?php  $country->inactive_flag; //if($country->inactive_flag==0){echo "Active";} else {//echo "InActive";} ?></td>
-
-                  <td style="    width: 15%;">
-                    <a class="fa fa-check fa-lg" style="color: dodgerblue;padding-left: 20%;position: relative;left: 10px;" data-toggle="modal" data-target="#modal-default"></a>
-                    
-<a href="<?php //echo base_url() . "season/delete_season_id/" . $country->season_id; ?>" onclick="myFunction()" class="fa fa-times fa-lg" style="color: red;position: relative;left: 15px;">
-
-                    </a>
-                    <script>
-function myFunction() {
-    alert("Selected Country Deleted successfully");
-}
-</script>
-                  </td>
-                </tr>
-                
-
-<?php// } ?>
-</ol> -->
+         
                 </tbody>
 
               </table>
@@ -338,6 +311,9 @@ function myFunction() {
         <h4 class="modal-title">Edit Season</h4>
       </div>
       <div class="modal-body">
+        <section class="content">
+          <div class="box" style="background: #c1c1c1;">
+             <div class="box-body">
         <div class="row">
         <div class="col-md-6">
           <form id="myForm" action="" method="post" class="form-horizontal">
@@ -348,10 +324,7 @@ function myFunction() {
                     <input type="hidden" name="season_id" value="">
                   </div>
                   <br>
-                  <div class="form-group">
-                    <label for="seeson_name">Season Name</label>
-                    <input name="seeson_name" type="text" class="form-control" placeholder="Season Name" style="border-radius: 1px;width: 100%;padding: 9px">
-                  </div>
+              
                   <label for="gor_from_date">Gregorian Calendar <br><small>From</small> </label>
                   <div class="form-group">
                     <input id="gor_from_date" name="gor_from_date" type="date" class="form-control" style="border-radius: 1px;width: 100%;padding: 9px;">
@@ -362,7 +335,7 @@ function myFunction() {
                     <!--<input type="date" class="form-control" id="exampleInputEmail1">-->
 
                     <input type="text" id="hij_from_date" name="hij_from_date" class="calendarsPicker"  style="border-radius: 1px;width: 100%;padding: 9px">
-                    <script>
+                    <script type="text/javascript">
                         $('#hij_from_date').calendarsPicker({
                             calendar: $.calendars.instance('islamic')
                         });
@@ -391,22 +364,12 @@ function myFunction() {
               <!-- form start -->
 
               <div class="box-body">
-                <div class="form-group">
-                  <label for="term_cond_id">Term & Condition</label>
-                    <select list="hosting-plan" id="term_cond_id" name="term_cond_id" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                  <option>Select Terms & Condition</option>
-                  <?php  foreach ($terms as $term){ ?>
-                    <option value="<?= $term->term_cond_id ?>"><?= $term->term_cond_desc ?></option>
-                  <?php } ?>
-                </select>
-                </div>
+                 <div class="form-group">
+                    <label for="seeson_name">Season Name</label>
+                    <input name="seeson_name" type="text" class="form-control" placeholder="Season Name" style="border-radius: 1px;width: 100%;padding: 9px">
+                  </div>
                 <br>
-                <div class="form-group">
-                 <label for="address">Term & Condition Detail</label>
-                 <select list="hosting-plan" id="term_cond_det_id" name="term_cond_det_id" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px;">
-                  <option>Select Term & Condition Detail</option>
-                </select>
-                </div>
+               
                 <label for="gor_to_date"> <br><small>To</small> </label>
                 <div class="form-group">
                   <input type="date" class="form-control" id="gor_to_date" name="gor_to_date">
@@ -415,7 +378,7 @@ function myFunction() {
                 <label for="hij_to_date"><br><small>To</small> </label>
                 <div class="form-group">
                   <input type="text" id="hij_to_date" name="hij_to_date" class="calendarsPicker"  style="border-radius: 1px;width: 100%;padding: 9px">
-                  <script>
+                  <script type="text/javascript">
                       $('#hij_to_date').calendarsPicker({
                           calendar: $.calendars.instance('islamic')
                       });
@@ -439,6 +402,9 @@ function myFunction() {
           <br>
          
           </form>
+        </div>
+      </div>
+      </section>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -484,8 +450,6 @@ function myFunction() {
       var url = $('#myForm').attr('action');
       var data = $('#myForm').serialize();
       //validate form
-     var term_cond_id = $('input[name=term_cond_id]');
-      var address = $('input[name=term_cond_det_id]');
       var seeson_name = $('input[name=seeson_name]');
       var gor_from_date = $('input[name=gor_from_date]');
       var gor_to_date = $('input[name=gor_to_date]');
@@ -493,18 +457,8 @@ function myFunction() {
       var hij_to_date = $('input[name=hij_to_date]');
       var status = $('input[name=inactive_flag]');
       var validate = true;
-     if(term_cond_id.val()==''){
-        term_cond_id.parent().parent().addClass('has-error');
-        validate = false;
-      }else{
-        term_cond_id.parent().parent().removeClass('has-error');
-      }
-      if(address.val()==''){
-        address.parent().parent().addClass('has-error');
-        validate = false;
-      }else{
-        address.parent().parent().removeClass('has-error');
-      }
+    
+    
        if(seeson_name.val()==''){
         seeson_name.parent().parent().addClass('has-error');
         validate = false;
@@ -586,16 +540,9 @@ function myFunction() {
         async: false,
         dataType: 'json',
         success: function(data){
-          $('select[name="term_cond_id"] option:selected').attr('Selected', false);
-          $('select[name="term_cond_det_id"] option:selected').attr('Selected', false);
-          $('input[name=seeson_name]').val("");
-          $('input[name=season_id]').val("");
-            getDetailListByTermId(data.term_cond_id, function(){
-              setTimeout(function(){ $('select[name="term_cond_det_id"]').find('option[value='+data.term_cond_det_id+']').attr('Selected', 'Selected'); }, 500);
-               
-            });
-          $('select[name="term_cond_id"]').find('option[value='+data.term_cond_id+']').attr('Selected', 'Selected');
-          
+    
+        
+           
           $('input[name=seeson_name]').val(data.seeson_name);
           $('input[name=season_id]').val(data.season_id);
           $('input[name=gor_from_date]').val(data.gor_from_date);
@@ -657,8 +604,6 @@ function myFunction() {
               { "sTitle": "Gre To", "sType": "string" },
               { "sTitle": "Hijri From", "sType": "string" },
               { "sTitle": "Hijri To", "sType": "string" },
-              { "sTitle": "Term & Condition", "sType": "string" },
-              { "sTitle": "Term Detail", "sType": "string" },
               { "sTitle": "Action", "sType": "html" }
           ]
       }).css("width","100%");

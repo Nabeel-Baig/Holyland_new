@@ -307,7 +307,74 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Modal title</h4>
       </div>
+
+      <section class="content">
+          <div class="box" style="background: #c1c1c1;">
       <div class="modal-body">
+         <form id="myForm" action="" method="post" class="form-horizontal">        
+        
+          
+             <div class="box-body">
+          <div class="row">
+          
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <!-- /.box-header -->
+              <!-- form start -->
+            
+                <div class="box-body">
+                  <input type="hidden" name="pay_terms_id" value="0">
+                  <div class="form-group">
+                    <label>Payment Type</label>
+                  <input type="text" name="pay_term_desc" class="form-control">
+                  </div>
+                  
+                </div>
+              
+
+
+            </div>
+            <div class="col-md-6">
+        
+
+              <div class="form-group" style="margin-top: 4%">
+                <label>Notes</label>
+                <textarea class="form-control" name="note"></textarea>
+              </div>
+
+              <!-- /.box -->
+
+
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group" style="">
+
+                <label for="inactive_flag" class="" style="    font-weight: 400; margin-left: 3%">
+                  <input type="radio" name="inactive_flag" value="0" class="checkbox1 active">
+                  Active
+                </label>
+                <label for="inactive_flag" style="    font-weight: 400;    margin-left: 7%;">
+                  <input type="radio" name="inactive_flag" value="1" class="checkbox1 inactive">                  Inactive
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+          <br>
+          
+
+          </form>
+</div>
+</div>
+        </section>
+
+
+      <!-- <div class="modal-body">
           <form id="myForm" action="" method="post" class="form-horizontal">
             <input type="hidden" name="pay_terms_id" value="0">
             <div class="form-group">
@@ -335,7 +402,7 @@
                   </div>
                    </div>
           </form>
-      </div>
+      </div> -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
@@ -379,7 +446,7 @@
       var data = $('#myForm').serialize();
       //validate form
       var pay_term_desc = $('input[name=pay_term_desc]');
-      var address = $('input[name=note]');
+      var address = $('textarea[name=note]');
       var result = '';
       if(pay_term_desc.val()==''){
         pay_term_desc.parent().parent().addClass('has-error');
@@ -439,7 +506,7 @@
         dataType: 'json',
         success: function(data){
           $('input[name=pay_term_desc]').val(data.pay_term_desc);
-          $('input[name=note]').val(data.note);
+          $('textarea[name=note]').val(data.note);
           $('input[name=pay_terms_id]').val(data.pay_terms_id);
           if(data.inactive_flag == 1){
             $('.inactive').prop('checked', true);

@@ -38,7 +38,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('payment'); ?>" method = "post">
+            <form role="form" name="myForm" id="myForm" onsubmit="validateForm()" action="<?php echo base_url('payment'); ?>" method = "post">
               <div class="box-body">
                 <div class="form-group" style="    margin-top: -7%;">
                   <?php echo form_label('ID'); ?>
@@ -83,7 +83,7 @@
             <!-- form start -->
 
             <div class="form-group">
-              <?php echo form_label('Comment/Note'); ?><?php echo form_error('note'); ?> <br />
+              <?php echo form_label('Comment/Note'); ?>
               <textarea class="form-control" rows="6" id="note" name="note" placeholder="note"></textarea>
             </div>
 
@@ -96,7 +96,7 @@
       </div>
       <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -109,8 +109,16 @@
       <br>
 
       <script>
-function myFunction() {
-    alert("Data Inserted successfully");
+function validateForm() {
+    var x = document.forms["myForm"]["pay_term_desc"].value;
+    if (x == "") {
+        alert("Payment Terms must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
 }
 </script>
       

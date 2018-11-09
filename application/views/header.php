@@ -201,7 +201,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>H</b>L</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Holy</b>Land</span>
+      <span class="logo-lg"><img src="<?php echo base_url('assets/images/logo.png') ?>" class="img-responsive" alt=""></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

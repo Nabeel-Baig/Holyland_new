@@ -39,7 +39,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('saleman'); ?>" method="post">
+            <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('saleman'); ?>" method="post">
               <div class="box-body" style="    margin-top: -1%;">
                 <div class="form-group">
                   <label>ID</label>
@@ -50,6 +50,12 @@
                   <label>SalesPerson</label>  <?php echo form_error('salesperson_name'); ?>
                   <input type="text" class="form-control" placeholder="Salesman" id="salesperson_name" name="salesperson_name">
                 </div>
+
+                 <div class="form-group">
+                  <label>Employee Name</label> 
+                  <input type="text" class="form-control" placeholder="Employee Name" id="" name="">
+                </div>
+
 
                 <div class="form-group">
 
@@ -88,6 +94,8 @@
             <label style="margin-top: 2%">Commission Percentage</label>
             <input type="text" class="form-control" placeholder="Commission PerCentage" id="commmission_per" name="commmission_per">
           </div>
+
+         
 <!-- 
               <form action="/action_page.php" method="get">
                 <input list="browsers" type="hidden-xs" placeholder="Select Employee ID" name="browser" style="width: 100%;border: 1px solid #d4d4d4;padding: 5px; margin-top: 5%">
@@ -110,7 +118,10 @@
             <input type="text" class="form-control" placeholder="Commission PerCentage" id="commission_fix" name="commission_fix">
           </div>
 
-
+   <div class="form-group">
+                  <label>Title</label> 
+                  <input type="text" class="form-control" placeholder="Title" id="" name="">
+                </div>
 
           <!-- /.box -->
 
@@ -121,7 +132,7 @@
       </div>
       <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -137,9 +148,17 @@
   </div>
 
 <script type="text/javascript">
-  function myFunction() {
-    alert("Data Inserted Successfully..!!");
-  }
+ function validateForm() {
+    var x = document.forms["myForm"]["salesperson_name"].value;
+    if (x == "") {
+        alert("SalesPerson Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
+}
 </script> 
 
   <footer class="main-footer">

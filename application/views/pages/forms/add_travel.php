@@ -42,7 +42,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('travel'); ?>" method = "post">
+            <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('travel'); ?>" method = "post">
               <div class="box-body">
                 <div class="form-group"style="    margin-top: -7%;">
                   <?php echo form_label('ID'); ?>
@@ -99,7 +99,7 @@
       </div>
 <div class="row">
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" onclick="myFunction()" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" form="myForm" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
@@ -108,8 +108,16 @@
       </div>
 
 <script>
-function myFunction() {
-    alert("Data Inserted successfully");
+function validateForm() {
+    var x = document.forms["myForm"]["travel_type_desc"].value;
+    if (x == "") {
+        alert("Travel Name must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
 }
 </script>
       <br>

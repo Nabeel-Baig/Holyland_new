@@ -40,7 +40,7 @@
           <!-- general form elements -->
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="<?php echo base_url('room'); ?>" method = "post">
+            <form role="form" name="myForm" id="myForm" onsubmit="return validateForm()" action="<?php echo base_url('room'); ?>" method = "post">
               <div class="box-body">
                 <div class="form-group">
                   <label>ID</label>
@@ -97,15 +97,28 @@
 
 
 <div class="col-md-4"></div>
-        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" onclick="myFunction()">Submit</button> </div>
+        <div class="col-md-4  center-block"> <button id="submit" value="submit" class="btn btn-primary center-block" style="width: 30%;border-radius: 40px;" form="myForm">Submit</button> </div>
         <div class="col-md-4"></div>
       </div>
       <br>
       </div>
       </form>
 <script>
-function myFunction() {
-    alert("Data Inserted successfully");
+function validateForm() {
+    var x = document.forms["myForm"]["room_type_name"].value;
+    var y = document.forms["myForm"]["no_of_persons"].value;
+    if (x == "") {
+        alert("Room Name must be filled out");
+        return false;
+    }
+     if (y == "") {
+        alert("No of Person must be filled out");
+        return false;
+    }
+    else {
+      alert("Data Inserted Successfully.!!");
+      
+    }
 }
 </script>
 

@@ -18,16 +18,14 @@ public   function index(){
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         //Validating Name Field
-        $this->form_validation->set_rules('seeson_name', 'Season Name', 'required|min_length[0]|max_length[30]');
+        $this->form_validation->set_rules('seeson_name', 'Season Name', 'required|min_length[1]|max_length[255]');
 
-       
-       $data['terms'] = $this->term_model->get_Term_Details();
        /*$data['countries'] = $this->state_model->getState_list();*/
 
         if ($this->form_validation->run() == FALSE) {
              $this->load->view('header');
             $this->load->view('aside');
-            $this->load->view('pages/forms/add_season', $data);
+            $this->load->view('pages/forms/add_season');
             //$this->load->view('insert_view');
         } else {
             //Setting values for tabel columns
@@ -38,8 +36,6 @@ public   function index(){
                 'gor_to_date' => $this->input->post('gor_to_date'),
                'hij_from_date' => $this->input->post('hij_from_date'),
                'hij_to_date' => $this->input->post('hij_to_date'),
-               'term_cond_id' => $this->input->post('term_cond_id'),
-               'term_cond_det_id' => $this->input->post('term_cond_det_id'),
                'inactive_flag' => $this->input->post('inactive_flag'),
                
             );
@@ -55,6 +51,7 @@ public   function index(){
             $this->load->view('pages/forms/add_season', $season);
     }
 }
+
 
 public   function season_list(){
      $id = $this->uri->segment(3);

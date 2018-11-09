@@ -10,6 +10,28 @@ class payment_model extends CI_Model{
        $this->db->insert('00000_mst_payment_terms', $data);
     }
 
+
+    // Fetch Payment in Client Table
+    function fetch_payment()
+ {
+  $this->db->order_by("pay_term_desc", "ASC");
+  $this->db->where("inactive_flag", ACTIVE);
+  $query = $this->db->get("00000_mst_payment_terms");
+  return $query->result();
+ }
+
+ // This function calls in Client As Show payment Details detail in Client model
+             function getpaymentBypaymentId($pay_terms_id){
+                $this->db->select('pay_term_desc');
+                $this->db->from('00000_mst_payment_terms');
+                $this->db->where('pay_terms_id', $pay_terms_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
+
+
+
     public  function showAllpayment(){
     /*$this->db->order_by('pay_terms_id', 'desc');
     $query = $this->db->get('00000_mst_payment_terms');

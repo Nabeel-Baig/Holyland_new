@@ -20,6 +20,26 @@ class saleman_model extends CI_Model{
     }
 
 
+// Fetch SalesPerson in Client Table
+    function fetch_sales()
+ {
+  $this->db->order_by("salesperson_name", "ASC");
+  $this->db->where("inactive_flag", ACTIVE);
+  $query = $this->db->get("00000_mst_salesperson");
+  return $query->result();
+ }
+
+  // This function calls in Client As Show saleman Details detail in Client model
+             function getsalemanBysalemanId($salesperson_id){
+                $this->db->select('salesperson_name');
+                $this->db->from('00000_mst_salesperson');
+                $this->db->where('salesperson_id', $salesperson_id);
+                $query = $this->db->get();
+                $result = $query->row();
+                return $result;
+            }
+
+
 
             /*// Function To Fetch Selected saleman Record
             function show_salesperson_id($data){
